@@ -1,0 +1,95 @@
+  <main id="contenido">
+
+    <section class="page-hero page-hero--search">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Migas de pan">
+          <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li aria-current="page">Catálogo</li>
+          </ol>
+        </nav>
+        <p class="eyebrow reveal">Catálogo en línea</p>
+        <h1 class="page-hero__title reveal">¿Qué quieres leer hoy?</h1>
+        <p class="page-hero__lead reveal">Busca en toda la colección de la biblioteca. Los resultados se abren en el catálogo oficial, donde puedes ver la disponibilidad y la ubicación de cada libro.</p>
+
+        <form class="catalog-search reveal" action="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl" method="get" role="search" target="_blank">
+          <label for="idx" class="sr-only">Buscar por</label>
+          <select id="idx" name="idx" class="catalog-search__select">
+            <option value="kw">Todo</option>
+            <option value="ti">Título</option>
+            <option value="au">Autor</option>
+            <option value="su">Tema</option>
+          </select>
+          <label for="cq" class="sr-only">Término de búsqueda</label>
+          <input id="cq" name="q" type="search" class="catalog-search__input" placeholder="Ej.: Cien años de soledad" required>
+          <button type="submit" class="btn btn--primary">Buscar <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="search-hints reveal">
+          <span>Búsquedas populares:</span>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=au&amp;q=Meira+Delmar" target="_blank" rel="noopener">Meira Delmar</a>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=au&amp;q=Garc%C3%ADa+M%C3%A1rquez" target="_blank" rel="noopener">García Márquez</a>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=su&amp;q=Atl%C3%A1ntico" target="_blank" rel="noopener">Historia del Atlántico</a>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=su&amp;q=literatura+infantil" target="_blank" rel="noopener">Literatura infantil</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="digital-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Colecciones digitales</p>
+          <h2 id="digital-title" class="section__title">Lee también desde casa</h2>
+        </header>
+        <ul class="cards" role="list">
+          <li class="card reveal">
+            <a href="http://dspace-atlantico.metabuscador.org" class="card__link" target="_blank" rel="noopener">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20M9 8h6M9 11h4"/></svg></span>
+              <h3 class="card__title">Biblioteca digital</h3>
+              <p class="card__text">Documentos, publicaciones y patrimonio digitalizado del Atlántico.</p>
+              <span class="card__more">Explorar <span aria-hidden="true">↗</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="https://public.digitaliapublishing.com" class="card__link" target="_blank" rel="noopener">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2"/></svg></span>
+              <h3 class="card__title">Libros electrónicos</h3>
+              <p class="card__text">Una colección de libros digitales para leer en tu computador o celular.</p>
+              <span class="card__more">Leer en línea <span aria-hidden="true">↗</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="http://adncultural.atlantico.gov.co/" class="card__link" target="_blank" rel="noopener">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg></span>
+              <h3 class="card__title">ADN Cultural</h3>
+              <p class="card__text">Plataforma cultural de la Gobernación del Atlántico.</p>
+              <span class="card__more">Visitar <span aria-hidden="true">↗</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="tips-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Guía rápida</p>
+          <h2 id="tips-title" class="section__title">Cómo encontrar tu libro</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal">
+            <h3 class="step__title">Busca</h3>
+            <p>Escribe el título, el autor o el tema. Elige "Autor" o "Título" para resultados más precisos.</p>
+          </li>
+          <li class="step reveal">
+            <h3 class="step__title">Revisa la disponibilidad</h3>
+            <p>En el resultado verás si el libro está disponible y en qué sala se encuentra.</p>
+          </li>
+          <li class="step reveal">
+            <h3 class="step__title">Anota la signatura</h3>
+            <p>Es el código de ubicación en la estantería. Con él lo encuentras en minutos o lo pides en referencia.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>

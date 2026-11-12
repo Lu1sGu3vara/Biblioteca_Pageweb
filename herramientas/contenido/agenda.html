@@ -1,0 +1,59 @@
+  <main id="contenido">
+
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Migas de pan">
+          <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li aria-current="page">Agenda</li>
+          </ol>
+        </nav>
+        <p class="eyebrow reveal">Agenda cultural</p>
+        <h1 class="page-hero__title reveal">Actividades y noticias</h1>
+        <p class="page-hero__lead reveal">Talleres, clubes de lectura, cine, actividades para niños y todo lo que pasa en la biblioteca. Las actividades son gratuitas.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="agenda-title">
+      <div class="container">
+        <h2 id="agenda-title" class="sr-only">Listado de actividades</h2>
+
+        <div class="agenda-tools reveal">
+          <div class="segmented" role="group" aria-label="Periodo">
+            <button type="button" class="segmented__btn is-active" data-periodo="proximos" aria-pressed="true">Próximas</button>
+            <button type="button" class="segmented__btn" data-periodo="pasados" aria-pressed="false">Anteriores</button>
+          </div>
+          <label class="agenda-search">
+            <span class="sr-only">Buscar actividad</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg>
+            <input type="search" id="agendaQ" placeholder="Buscar actividad…">
+          </label>
+        </div>
+
+        <div class="chips reveal" role="group" aria-label="Filtrar por tipo de actividad" id="agendaFilters">
+          <button type="button" class="chip is-active" data-filter="todas" aria-pressed="true">Todas</button>
+          <button type="button" class="chip" data-filter="cultura" aria-pressed="false">Cultura</button>
+          <button type="button" class="chip" data-filter="infantil" aria-pressed="false">Infantil</button>
+          <button type="button" class="chip" data-filter="taller" aria-pressed="false">Talleres</button>
+          <button type="button" class="chip" data-filter="club" aria-pressed="false">Clubes</button>
+          <button type="button" class="chip" data-filter="cine" aria-pressed="false">Cine</button>
+          <button type="button" class="chip" data-filter="noticia" aria-pressed="false">Noticias</button>
+        </div>
+
+        <p class="agenda-count" id="agendaCount" aria-live="polite"></p>
+        <div class="agenda" id="agendaList">
+          <p class="news__empty">Cargando agenda…</p>
+        </div>
+        <noscript><p class="note">Activa JavaScript para ver la agenda.</p></noscript>
+
+        <div class="cta-band reveal" style="margin-top:56px">
+          <div>
+            <h2>¿Quieres inscribirte en una actividad?</h2>
+            <p>Escríbenos y te reservamos un cupo en talleres y clubes de lectura.</p>
+          </div>
+          <a href="contacto.html?tipo=actividad" class="btn btn--light">Inscribirme</a>
+        </div>
+      </div>
+    </section>
+
+  </main>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo | Biblioteca Meira Delmar</title>
+  <meta name="description" content="Busca libros en el catálogo en línea de la Biblioteca Meira Delmar y accede a la biblioteca digital y los libros electrónicos.">
+  <meta name="theme-color" content="#E40E20">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <div class="govbar" role="banner" aria-label="Portal del Estado colombiano">
+    <div class="container govbar__inner">
+      <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+      <a href="https://www.atlantico.gov.co" class="govbar__back"><span aria-hidden="true">←</span> Volver al portal de la Gobernación</a>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="brand" aria-label="Biblioteca Meira Delmar, ir al inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="32" height="32"><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1z M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">Biblioteca Meira Delmar</span>
+          <span class="brand__sub">Gobernación del Atlántico</span>
+        </span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+        <span class="nav-toggle__bar" aria-hidden="true"></span><span class="sr-only">Abrir menú</span>
+      </button>
+      <nav class="nav" id="mainNav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li><a href="historia.html" class="nav__link">La Biblioteca</a></li>
+          <li><a href="servicios.html" class="nav__link">Servicios</a></li>
+          <li><a href="catalogo.html" class="nav__link is-active" aria-current="page">Catálogo</a></li>
+          <li><a href="agenda.html" class="nav__link">Agenda</a></li>
+          <li><a href="visitanos.html" class="nav__link">Visítanos</a></li>
+          <li><a href="contacto.html" class="nav__link nav__link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section class="page-hero page-hero--search">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Migas de pan">
+          <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li aria-current="page">Catálogo</li>
+          </ol>
+        </nav>
+        <p class="eyebrow reveal">Catálogo en línea</p>
+        <h1 class="page-hero__title reveal">¿Qué quieres leer hoy?</h1>
+        <p class="page-hero__lead reveal">Busca en toda la colección de la biblioteca. Los resultados se abren en el catálogo oficial, donde puedes ver la disponibilidad y la ubicación de cada libro.</p>
+
+        <form class="catalog-search reveal" action="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl" method="get" role="search" target="_blank">
+          <label for="idx" class="sr-only">Buscar por</label>
+          <select id="idx" name="idx" class="catalog-search__select">
+            <option value="kw">Todo</option>
+            <option value="ti">Título</option>
+            <option value="au">Autor</option>
+            <option value="su">Tema</option>
+          </select>
+          <label for="cq" class="sr-only">Término de búsqueda</label>
+          <input id="cq" name="q" type="search" class="catalog-search__input" placeholder="Ej.: Cien años de soledad" required>
+          <button type="submit" class="btn btn--primary">Buscar <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="search-hints reveal">
+          <span>Búsquedas populares:</span>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=au&amp;q=Meira+Delmar" target="_blank" rel="noopener">Meira Delmar</a>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=au&amp;q=Garc%C3%ADa+M%C3%A1rquez" target="_blank" rel="noopener">García Márquez</a>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=su&amp;q=Atl%C3%A1ntico" target="_blank" rel="noopener">Historia del Atlántico</a>
+          <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=su&amp;q=literatura+infantil" target="_blank" rel="noopener">Literatura infantil</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="digital-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Colecciones digitales</p>
+          <h2 id="digital-title" class="section__title">Lee también desde casa</h2>
+        </header>
+        <ul class="cards" role="list">
+          <li class="card reveal">
+            <a href="http://dspace-atlantico.metabuscador.org" class="card__link" target="_blank" rel="noopener">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20M9 8h6M9 11h4"/></svg></span>
+              <h3 class="card__title">Biblioteca digital</h3>
+              <p class="card__text">Documentos, publicaciones y patrimonio digitalizado del Atlántico.</p>
+              <span class="card__more">Explorar <span aria-hidden="true">↗</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="https://public.digitaliapublishing.com" class="card__link" target="_blank" rel="noopener">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2"/></svg></span>
+              <h3 class="card__title">Libros electrónicos</h3>
+              <p class="card__text">Una colección de libros digitales para leer en tu computador o celular.</p>
+              <span class="card__more">Leer en línea <span aria-hidden="true">↗</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="http://adncultural.atlantico.gov.co/" class="card__link" target="_blank" rel="noopener">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg></span>
+              <h3 class="card__title">ADN Cultural</h3>
+              <p class="card__text">Plataforma cultural de la Gobernación del Atlántico.</p>
+              <span class="card__more">Visitar <span aria-hidden="true">↗</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="tips-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Guía rápida</p>
+          <h2 id="tips-title" class="section__title">Cómo encontrar tu libro</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal">
+            <h3 class="step__title">Busca</h3>
+            <p>Escribe el título, el autor o el tema. Elige "Autor" o "Título" para resultados más precisos.</p>
+          </li>
+          <li class="step reveal">
+            <h3 class="step__title">Revisa la disponibilidad</h3>
+            <p>En el resultado verás si el libro está disponible y en qué sala se encuentra.</p>
+          </li>
+          <li class="step reveal">
+            <h3 class="step__title">Anota la signatura</h3>
+            <p>Es el código de ubicación en la estantería. Con él lo encuentras en minutos o lo pides en referencia.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <a href="#contenido" class="to-top" id="toTop" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__brand">Biblioteca Meira Delmar</p>
+        <p class="footer__text">Un espacio de la Gobernación del Atlántico para la lectura, la memoria y la cultura.</p>
+      </div>
+      <nav aria-label="Enlaces del pie de página">
+        <p class="footer__head">Explora</p>
+        <ul class="footer__list">
+          <li><a href="historia.html">La Biblioteca</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="agenda.html">Agenda</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Información legal">
+        <p class="footer__head">Información</p>
+        <ul class="footer__list">
+          <li><a href="politica-datos.html">Política de tratamiento de datos</a></li>
+          <li><a href="accesibilidad.html">Accesibilidad</a></li>
+          <li><a href="https://www.atlantico.gov.co">Gobernación del Atlántico</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Gobernación del Atlántico · Biblioteca Meira Delmar</p>
+      <a href="#contenido" class="footer__top">Volver arriba <span aria-hidden="true">↑</span></a>
+    </div>
+    <div class="govbar govbar--footer">
+      <div class="container govbar__inner">
+        <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios | Biblioteca Meira Delmar</title>
+  <meta name="description" content="Servicios de la Biblioteca Meira Delmar: salas de lectura, préstamo, sala infantil, talleres, acceso a internet y más.">
+  <meta name="theme-color" content="#E40E20">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <div class="govbar" role="banner" aria-label="Portal del Estado colombiano">
+    <div class="container govbar__inner">
+      <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+      <a href="https://www.atlantico.gov.co" class="govbar__back"><span aria-hidden="true">←</span> Volver al portal de la Gobernación</a>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="brand" aria-label="Biblioteca Meira Delmar, ir al inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="32" height="32"><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1z M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">Biblioteca Meira Delmar</span>
+          <span class="brand__sub">Gobernación del Atlántico</span>
+        </span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+        <span class="nav-toggle__bar" aria-hidden="true"></span><span class="sr-only">Abrir menú</span>
+      </button>
+      <nav class="nav" id="mainNav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li><a href="historia.html" class="nav__link">La Biblioteca</a></li>
+          <li><a href="servicios.html" class="nav__link is-active" aria-current="page">Servicios</a></li>
+          <li><a href="catalogo.html" class="nav__link">Catálogo</a></li>
+          <li><a href="agenda.html" class="nav__link">Agenda</a></li>
+          <li><a href="visitanos.html" class="nav__link">Visítanos</a></li>
+          <li><a href="contacto.html" class="nav__link nav__link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Migas de pan">
+          <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li aria-current="page">Servicios</li>
+          </ol>
+        </nav>
+        <p class="eyebrow reveal">Servicios</p>
+        <h1 class="page-hero__title reveal">Todo lo que puedes hacer aquí</h1>
+        <p class="page-hero__lead reveal">Tres pisos de servicios gratuitos para todo público, de lunes a viernes de 8:00 a. m. a 4:00 p. m. Elige el que necesitas y conoce cómo acceder.</p>
+      </div>
+    </section>
+
+    <nav class="subnav" aria-label="Secciones de esta página">
+      <div class="container">
+        <ul>
+          <li><a href="#salas">Salas y servicios</a></li>
+          <li><a href="#afiliacion">Cómo afiliarte</a></li>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Servicios -->
+    <section class="section" id="salas" aria-labelledby="salas-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Salas y servicios</p>
+          <h2 id="salas-title" class="section__title">Espacios para cada lector</h2>
+        </header>
+
+        <ul class="services" role="list">
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+            <div>
+              <h3 class="service__title">Lectura en sala</h3>
+              <p>Sala general de lectura con capacidad para 100 personas y estantería abierta y señalizada, para que encuentres los libros por tu cuenta. Siempre hay una vitrina con libros recomendados.</p>
+              <ul class="tags"><li>Todo público</li><li>Primer piso</li><li>Sin afiliación</li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7zM8 8h8M8 12h5"/></svg></span>
+            <div>
+              <h3 class="service__title">Préstamo a domicilio</h3>
+              <p>Llévate libros a casa con tu afiliación a la <strong>Llave del Saber</strong>. Los libros de literatura se prestan por una semana, renovable. Los de alta consulta, solo el fin de semana.</p>
+              <ul class="tags"><li>Requiere afiliación</li><li>1 semana renovable</li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4l-5.2 2.7 1-5.8L3.5 9.2l5.9-.9z"/></svg></span>
+            <div>
+              <h3 class="service__title">Sala infantil</h3>
+              <p>Un espacio para que niñas y niños descubran el placer de leer, con la hora del cuento, títeres y actividades para toda la familia.</p>
+              <ul class="tags"><li>Primera infancia y niñez</li><li>Primer piso</li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></span>
+            <div>
+              <h3 class="service__title">Aula tiflotecnológica</h3>
+              <p>Lectura sin barreras para personas con discapacidad visual: más de 400 libros en braille, software lector de pantalla e impresora braille.</p>
+              <ul class="tags"><li>25 usuarios</li><li>Primer piso</li><li>Accesible</li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zM8 21h8M12 16v5"/></svg></span>
+            <div>
+              <h3 class="service__title">Internet y sala multimedia</h3>
+              <p>Computadores con internet y material audiovisual: películas, audiolibros y complementos digitales de los libros impresos.</p>
+              <ul class="tags"><li>Segundo piso</li><li>Gratuito</li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/></svg></span>
+            <div>
+              <h3 class="service__title">Hemeroteca</h3>
+              <p>Periódicos y revistas para consultar la historia de la región a través de su prensa.</p>
+              <ul class="tags"><li>Segundo piso</li><li>Consulta en sala</li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>
+            <div>
+              <h3 class="service__title">Museo Meira Delmar</h3>
+              <p>El Centro de Documentación Meira Delmar guarda manuscritos, fotografías, medallas, instrumentos musicales y objetos personales de la poeta.</p>
+              <ul class="tags"><li>Segundo piso</li><li><a href="historia.html#meira-delmar">Conoce a Meira</a></li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+            <div>
+              <h3 class="service__title">Promoción de lectura y cultura</h3>
+              <p>Tertulias, conversatorios, talleres, ciclos de cine, títeres, recitales, conciertos, exposiciones y torneos de ajedrez.</p>
+              <ul class="tags"><li>Auditorio para 114 personas</li><li><a href="index.html#noticias">Ver esta semana</a></li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span>
+            <div>
+              <h3 class="service__title">Alfabetización digital</h3>
+              <p>Talleres de internet y tecnología: redes sociales, hoja de vida y empleo en línea, Office básico y programas de diseño.</p>
+              <ul class="tags"><li>Adultos y jóvenes</li><li>Aula multimedia</li></ul>
+            </div>
+          </li>
+          <li class="service reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
+            <div>
+              <h3 class="service__title">Extensión a los municipios</h3>
+              <p>Apoyo a las bibliotecas de los 22 municipios, salas rurales de lectura, bibliotecas rurales itinerantes y el programa <em>Atlántico más lector</em>.</p>
+              <ul class="tags"><li>Todo el Atlántico</li></ul>
+            </div>
+          </li>
+        </ul>
+
+        <div class="cta-band reveal" style="margin-top:48px">
+          <div>
+            <h2>¿Buscas un libro?</h2>
+            <p>Consulta el catálogo en línea o explora la biblioteca digital y los libros electrónicos.</p>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="https://biblioteca.atlantico.gov.co:8001/" class="btn btn--light" target="_blank" rel="noopener">Catálogo en línea ↗</a>
+            <a href="http://dspace-atlantico.metabuscador.org" class="btn btn--ghost" style="border-color:#EFE7DA;color:#EFE7DA" target="_blank" rel="noopener">Biblioteca digital ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Afiliación -->
+    <section class="section section--paper" id="afiliacion" aria-labelledby="afil-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Cómo afiliarte</p>
+          <h2 id="afil-title" class="section__title">Tu Llave del Saber en tres pasos</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal">
+            <h3 class="step__title">Acércate a la biblioteca</h3>
+            <p>Ve al punto de atención, Calle 38 N.º 38B-21, de lunes a viernes entre 8:00 a. m. y 4:00 p. m.</p>
+          </li>
+          <li class="step reveal">
+            <h3 class="step__title">Presenta tu documento</h3>
+            <p>Lleva tu documento de identidad. <mark class="pending">[Otros requisitos por confirmar con la biblioteca]</mark></p>
+          </li>
+          <li class="step reveal">
+            <h3 class="step__title">Recibe tu Llave del Saber</h3>
+            <p>Con él podrás llevar libros a casa e inscribirte en talleres.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Preguntas frecuentes -->
+    <section class="section" id="preguntas" aria-labelledby="faq-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2 id="faq-title" class="section__title">Resolvemos tus dudas</h2>
+        </header>
+        <div class="faq reveal">
+          <details>
+            <summary>¿Tiene algún costo usar la biblioteca?</summary>
+            <p>No. La consulta en sala, el internet y las actividades culturales son gratuitas.</p>
+          </details>
+          <details>
+            <summary>¿Necesito afiliarme para leer en la biblioteca?</summary>
+            <p>No. Cualquier persona puede leer en sala. La afiliación solo es necesaria para llevar libros a casa.</p>
+          </details>
+          <details>
+            <summary>¿Cómo sé si un libro está disponible?</summary>
+            <p>Búscalo en el <a href="https://biblioteca.atlantico.gov.co:8001/" target="_blank" rel="noopener">catálogo en línea</a> por título, autor o tema, o pregunta en el servicio de referencia.</p>
+          </details>
+          <details>
+            <summary>¿Qué libros no se prestan a domicilio?</summary>
+            <p>El material de referencia, patrimonial y de valor histórico solo se consulta en sala. Los libros de alta consulta se prestan únicamente el fin de semana.</p>
+          </details>
+          <details>
+            <summary>¿Puedo donar libros?</summary>
+            <p>Sí. Escríbenos desde la página de <a href="contacto.html?tipo=donacion">contacto</a> y te indicaremos el proceso de donación.</p>
+          </details>
+          <details>
+            <summary>¿La biblioteca es accesible para personas con discapacidad?</summary>
+            <p>Sí. Contamos con un aula tiflotecnológica con más de 400 libros en braille, software lector de pantalla e impresora braille, además de audiolibros en la sala multimedia.</p>
+          </details>
+        </div>
+
+        <div class="cta-band reveal" style="margin-top:56px">
+          <div>
+            <h2>¿Tienes otra pregunta?</h2>
+            <p>Escríbenos y te responderemos lo antes posible.</p>
+          </div>
+          <a href="contacto.html" class="btn btn--light">Contactar</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <a href="#contenido" class="to-top" id="toTop" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__brand">Biblioteca Meira Delmar</p>
+        <p class="footer__text">Un espacio de la Gobernación del Atlántico para la lectura, la memoria y la cultura.</p>
+      </div>
+      <nav aria-label="Enlaces del pie de página">
+        <p class="footer__head">Explora</p>
+        <ul class="footer__list">
+          <li><a href="historia.html">La Biblioteca</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="agenda.html">Agenda</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Información legal">
+        <p class="footer__head">Información</p>
+        <ul class="footer__list">
+          <li><a href="politica-datos.html">Política de tratamiento de datos</a></li>
+          <li><a href="accesibilidad.html">Accesibilidad</a></li>
+          <li><a href="https://www.atlantico.gov.co">Gobernación del Atlántico</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Gobernación del Atlántico · Biblioteca Meira Delmar</p>
+      <a href="#contenido" class="footer__top">Volver arriba <span aria-hidden="true">↑</span></a>
+    </div>
+    <div class="govbar govbar--footer">
+      <div class="container govbar__inner">
+        <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Meira Delmar | Inicio</title>
+  <meta name="description" content="Portal oficial de la Biblioteca Meira Delmar: historia, servicios, catálogo, agenda cultural y contacto.">
+  <meta name="theme-color" content="#E40E20">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- Barra gov.co (requisito Res. 1519 de 2020 – MinTIC) -->
+  <div class="govbar" role="banner" aria-label="Portal del Estado colombiano">
+    <div class="container govbar__inner">
+      <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+      <a href="https://www.atlantico.gov.co" class="govbar__back">
+        <span aria-hidden="true">←</span> Volver al portal de la Gobernación
+      </a>
+    </div>
+  </div>
+
+  <!-- Encabezado principal -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="brand" aria-label="Biblioteca Meira Delmar, ir al inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="32" height="32"><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1z M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">Biblioteca Meira Delmar</span>
+          <span class="brand__sub">Gobernación del Atlántico</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+
+      <nav class="nav" id="mainNav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link is-active" aria-current="page">Inicio</a></li>
+          <li><a href="historia.html" class="nav__link">La Biblioteca</a></li>
+          <li><a href="servicios.html" class="nav__link">Servicios</a></li>
+          <li><a href="catalogo.html" class="nav__link">Catálogo</a></li>
+          <li><a href="agenda.html" class="nav__link">Agenda</a></li>
+          <li><a href="visitanos.html" class="nav__link">Visítanos</a></li>
+          <li><a href="contacto.html" class="nav__link nav__link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- HERO: bienvenida -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <p class="eyebrow reveal">Biblioteca Pública Departamental · Desde 1922</p>
+          <h1 id="hero-title" class="hero__title reveal">
+            Un lugar para
+            <span class="rotator" aria-hidden="true"><span class="rotator__word" id="rotator">leer</span></span>
+            <span class="sr-only">leer, aprender, imaginar y encontrarnos</span>
+          </h1>
+          <p class="hero__lead reveal">
+            Más de cien años abriendo las puertas de la lectura a todo el Atlántico.
+            Descubre nuestra historia, busca en el catálogo y participa en las actividades de cada semana.
+          </p>
+
+          <form class="search reveal" action="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl" method="get" role="search" target="_blank">
+            <label for="q" class="sr-only">Buscar en el catálogo</label>
+            <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg>
+            <input type="search" id="q" name="q" class="search__input" placeholder="Busca un libro, autor o tema…" required>
+            <button type="submit" class="btn btn--primary">Buscar</button>
+          </form>
+          <p class="search-hints reveal">
+            <span>Prueba con:</span>
+            <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?q=Meira+Delmar" target="_blank" rel="noopener">Meira Delmar</a>
+            <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?q=Garc%C3%ADa+M%C3%A1rquez" target="_blank" rel="noopener">García Márquez</a>
+            <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?q=Barranquilla" target="_blank" rel="noopener">Barranquilla</a>
+          </p>
+        </div>
+
+        <!-- Ilustración: estante de libros (decorativa) -->
+        <div class="shelf-wrap reveal" aria-hidden="true">
+          <div class="shelf" id="shelf">
+            <div class="shelf__row">
+              <span class="book" style="--h:88%;--c:var(--book-1)"></span>
+              <span class="book" style="--h:72%;--c:var(--book-2)"></span>
+              <span class="book" style="--h:95%;--c:var(--book-3)"></span>
+              <span class="book book--lean" style="--h:80%;--c:var(--book-4)"></span>
+              <span class="book" style="--h:66%;--c:var(--book-5)"></span>
+              <span class="book" style="--h:90%;--c:var(--book-2)"></span>
+              <span class="book" style="--h:76%;--c:var(--book-1)"></span>
+            </div>
+            <div class="shelf__board"></div>
+            <div class="shelf__row">
+              <span class="book" style="--h:70%;--c:var(--book-3)"></span>
+              <span class="book" style="--h:92%;--c:var(--book-5)"></span>
+              <span class="book" style="--h:84%;--c:var(--book-1)"></span>
+              <span class="book" style="--h:68%;--c:var(--book-4)"></span>
+              <span class="book" style="--h:96%;--c:var(--book-2)"></span>
+              <span class="book book--lean-r" style="--h:78%;--c:var(--book-3)"></span>
+            </div>
+            <div class="shelf__board"></div>
+          </div>
+          <div class="stamp"><span class="stamp__small">Desde</span><span class="stamp__big">1922</span><span class="stamp__small">★ ★ ★</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cifras -->
+    <section class="stats" aria-label="La biblioteca en cifras">
+      <div class="container">
+        <ul class="stats__list" role="list">
+          <li class="stat reveal"><span class="stat__num" data-count="100" data-suffix="+">100+</span><span class="stat__label">años de historia</span></li>
+          <li class="stat reveal"><span class="stat__num" data-count="36">36</span><span class="stat__label">años dirigida por Meira Delmar</span></li>
+          <li class="stat reveal"><span class="stat__num" data-count="22">22</span><span class="stat__label">municipios atendidos</span></li>
+          <li class="stat reveal"><span class="stat__num" data-count="400" data-suffix="+">400+</span><span class="stat__label">libros en braille</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Accesos rápidos: navegación guiada -->
+    <section class="section" aria-labelledby="quick-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Empieza aquí</p>
+          <h2 id="quick-title" class="section__title">¿Qué quieres hacer hoy?</h2>
+        </header>
+
+        <ul class="cards" role="list">
+          <li class="card reveal">
+            <a href="historia.html" class="card__link">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></span>
+              <h3 class="card__title">Conocer nuestra historia</h3>
+              <p class="card__text">Cien años de biblioteca y el legado de la poeta Meira Delmar.</p>
+              <span class="card__more">Leer historia <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="catalogo.html" class="card__link">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg></span>
+              <h3 class="card__title">Buscar un libro</h3>
+              <p class="card__text">Consulta el catálogo en línea por título, autor o tema.</p>
+              <span class="card__more">Ir al catálogo <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="servicios.html" class="card__link">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+              <h3 class="card__title">Ver los servicios</h3>
+              <p class="card__text">Salas de lectura, préstamo, sala infantil, internet y talleres.</p>
+              <span class="card__more">Ver servicios <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="#noticias" class="card__link">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9h18M7 3v4M17 3v4M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg></span>
+              <h3 class="card__title">Asistir a un evento</h3>
+              <p class="card__text">Clubes de lectura, talleres, cine y actividades culturales.</p>
+              <span class="card__more">Ver esta semana <span aria-hidden="true">↓</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="visitanos.html" class="card__link">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
+              <h3 class="card__title">Planear mi visita</h3>
+              <p class="card__text">Horarios, ubicación y cómo llegar al Centro Histórico.</p>
+              <span class="card__more">Cómo llegar <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          <li class="card reveal">
+            <a href="contacto.html" class="card__link">
+              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM3 7l9 6 9-6"/></svg></span>
+              <h3 class="card__title">Escribirnos</h3>
+              <p class="card__text">Envíanos tus preguntas, sugerencias o solicitudes.</p>
+              <span class="card__more">Contactar <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Noticias y eventos de la semana (se cargan desde data/noticias.json) -->
+    <section class="section section--paper" id="noticias" aria-labelledby="news-title">
+      <div class="container">
+        <header class="section__head section__head--row reveal">
+          <div>
+            <p class="eyebrow">Noticias y agenda</p>
+            <h2 id="news-title" class="section__title">Esta semana en la biblioteca</h2>
+          </div>
+          <a href="agenda.html" class="link-arrow">Ver toda la agenda <span aria-hidden="true">→</span></a>
+        </header>
+
+        <div class="chips reveal" role="group" aria-label="Filtrar por tipo de actividad" id="newsFilters">
+          <button type="button" class="chip is-active" data-filter="todas" aria-pressed="true">Todas</button>
+          <button type="button" class="chip" data-filter="cultura" aria-pressed="false">Cultura</button>
+          <button type="button" class="chip" data-filter="infantil" aria-pressed="false">Infantil</button>
+          <button type="button" class="chip" data-filter="taller" aria-pressed="false">Talleres</button>
+          <button type="button" class="chip" data-filter="club" aria-pressed="false">Clubes</button>
+          <button type="button" class="chip" data-filter="cine" aria-pressed="false">Cine</button>
+          <button type="button" class="chip" data-filter="noticia" aria-pressed="false">Noticias</button>
+        </div>
+
+        <div class="news" id="newsList" aria-live="polite">
+          <p class="news__empty">Cargando actividades…</p>
+        </div>
+        <noscript><p class="note">Activa JavaScript para ver las actividades de la semana, o consulta la <a href="agenda.html">agenda completa</a>.</p></noscript>
+      </div>
+    </section>
+
+    <!-- Meira Delmar: sección destacada -->
+    <section class="feature" aria-labelledby="meira-title">
+      <div class="container feature__inner">
+        <div class="feature__art reveal" aria-hidden="true">
+          <div class="monogram">
+            <span class="monogram__letters">MD</span>
+            <span class="monogram__years">1922 — 2009</span>
+          </div>
+          <span class="wave"></span>
+        </div>
+        <div class="feature__text reveal">
+          <p class="eyebrow eyebrow--light">La poeta que nos da nombre</p>
+          <h2 id="meira-title" class="feature__title">Meira Delmar</h2>
+          <p>
+            Olga Chams Eljach nació en Barranquilla en 1922, el mismo año en que esta biblioteca abrió sus puertas.
+            Con el nombre de <em>Meira Delmar</em> se convirtió en una de las grandes voces de la poesía colombiana,
+            y durante <strong>36 años</strong> dirigió la biblioteca que hoy lleva su nombre.
+          </p>
+          <p>Su memoria vive en el Museo – Centro de Documentación del segundo piso: manuscritos, fotografías y objetos personales.</p>
+          <div class="feature__actions">
+            <a href="historia.html#meira-delmar" class="btn btn--light">Conoce su vida y obra</a>
+            <a href="historia.html#linea-tiempo" class="link-arrow link-arrow--light">Ver la línea del tiempo <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visítanos -->
+    <section class="section" aria-labelledby="visit-title">
+      <div class="container visit visit--light">
+        <div class="reveal">
+          <p class="eyebrow">Visítanos</p>
+          <h2 id="visit-title" class="section__title">Te esperamos en el Centro Histórico</h2>
+          <p class="visit__lead">Entrada libre y gratuita para todo público.</p>
+          <p class="status" id="openStatus" aria-live="polite"></p>
+          <p><a href="visitanos.html" class="btn btn--primary">Cómo llegar</a></p>
+        </div>
+        <dl class="visit__info reveal">
+          <div>
+            <dt>Horario</dt>
+            <dd>Lunes a viernes<br>8:00 a. m. – 4:00 p. m.<br><small>Jornada continua</small></dd>
+          </div>
+          <div>
+            <dt>Dirección</dt>
+            <dd>Calle 38 N.º 38B-21<br>Frente al Parque Centenario<br>Barranquilla, Atlántico</dd>
+          </div>
+          <div>
+            <dt>Contacto</dt>
+            <dd>+57 605 330 7000<br><a href="mailto:atencionalciudadano@atlantico.gov.co">atencionalciudadano@<wbr>atlantico.gov.co</a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <a href="#contenido" class="to-top" id="toTop" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <!-- Pie de página institucional -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__brand">Biblioteca Meira Delmar</p>
+        <p class="footer__text">Un espacio de la Gobernación del Atlántico para la lectura, la memoria y la cultura.</p>
+      </div>
+      <nav aria-label="Enlaces del pie de página">
+        <p class="footer__head">Explora</p>
+        <ul class="footer__list">
+          <li><a href="historia.html">La Biblioteca</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="agenda.html">Agenda</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Información legal">
+        <p class="footer__head">Información</p>
+        <ul class="footer__list">
+          <li><a href="politica-datos.html">Política de tratamiento de datos</a></li>
+          <li><a href="accesibilidad.html">Accesibilidad</a></li>
+          <li><a href="https://www.atlantico.gov.co">Gobernación del Atlántico</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Gobernación del Atlántico · Biblioteca Meira Delmar</p>
+      <a href="#contenido" class="footer__top">Volver arriba <span aria-hidden="true">↑</span></a>
+    </div>
+    <div class="govbar govbar--footer">
+      <div class="container govbar__inner">
+        <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

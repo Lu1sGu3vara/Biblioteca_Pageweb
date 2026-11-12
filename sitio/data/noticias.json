@@ -1,0 +1,85 @@
+{
+  "_instrucciones": "Para agregar una noticia o evento, copie un bloque { ... } dentro de 'noticias', cambie los datos y guarde. Fechas en formato AAAA-MM-DD y hora en 24 h (HH:MM). Categorías válidas: taller, club, infantil, cine, cultura, noticia. 'destacado': true lo muestra en grande. 'imagen' es opcional (ruta dentro de img/).",
+  "noticias": [
+    {
+      "titulo": "Recital: los versos de Meira Delmar",
+      "fecha": "2026-11-18",
+      "hora": "16:00",
+      "lugar": "Auditorio",
+      "categoria": "cultura",
+      "resumen": "Lectura en voz alta de poemas de Meira Delmar acompañada de música en vivo, en el Museo – Centro de Documentación.",
+      "destacado": true,
+      "imagen": ""
+    },
+    {
+      "titulo": "Hora del cuento",
+      "fecha": "2026-11-17",
+      "hora": "10:00",
+      "lugar": "Sala infantil",
+      "categoria": "infantil",
+      "resumen": "Cuentos, títeres y juegos para niñas y niños de 3 a 8 años con sus familias.",
+      "destacado": false,
+      "imagen": ""
+    },
+    {
+      "titulo": "Taller de alfabetización digital",
+      "fecha": "2026-11-19",
+      "hora": "09:00",
+      "lugar": "Aula multimedia",
+      "categoria": "taller",
+      "resumen": "Aprende a crear tu hoja de vida y a postularte a empleos en línea. Cupos limitados.",
+      "destacado": false,
+      "imagen": ""
+    },
+    {
+      "titulo": "Club de lectura: poesía del Caribe",
+      "fecha": "2026-11-20",
+      "hora": "15:00",
+      "lugar": "Sala general",
+      "categoria": "club",
+      "resumen": "Este mes leemos y conversamos sobre poetas del Caribe colombiano.",
+      "destacado": false,
+      "imagen": ""
+    },
+    {
+      "titulo": "Cine en la biblioteca: el Grupo de Barranquilla",
+      "fecha": "2026-11-21",
+      "hora": "14:00",
+      "lugar": "Sala audiovisual",
+      "categoria": "cine",
+      "resumen": "Proyección y conversatorio sobre García Márquez, Obregón, Cepeda y la vida cultural de la ciudad.",
+      "destacado": false,
+      "imagen": ""
+    },
+    {
+      "titulo": "Nuevos libros en braille en el aula tiflotecnológica",
+      "fecha": "2026-11-12",
+      "hora": "",
+      "lugar": "Primer piso",
+      "categoria": "noticia",
+      "resumen": "La colección accesible sigue creciendo. Conoce los nuevos títulos disponibles para consulta.",
+      "destacado": false,
+      "imagen": ""
+    },
+    {
+      "titulo": "Tertulia: cien años de la Biblioteca Departamental",
+      "fecha": "2026-11-05",
+      "hora": "15:00",
+      "lugar": "Auditorio",
+      "categoria": "cultura",
+      "resumen": "Conversatorio sobre la historia de la biblioteca y su relación con el Grupo de Barranquilla.",
+      "destacado": false,
+      "imagen": ""
+    },
+    {
+      "titulo": "Torneo de ajedrez juvenil",
+      "fecha": "2026-10-24",
+      "hora": "09:00",
+      "lugar": "Plazoleta",
+      "categoria": "taller",
+      "resumen": "Jornada de ajedrez para jóvenes de 12 a 18 años.",
+      "destacado": false,
+      "imagen": ""
+    }
+  ]
+}

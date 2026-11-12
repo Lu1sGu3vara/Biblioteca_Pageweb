@@ -1,0 +1,222 @@
+# Plan de Aplicación – Portal Web de la Biblioteca Meira Delmar
+
+> Documento base para el informe tipo tesis. Cada sección indica a qué capítulo del documento Word corresponde (📘).
+
+---
+
+## 1. Identificación del proyecto  📘 *Portada / Introducción*
+
+| Campo | Detalle |
+|---|---|
+| **Nombre del proyecto** | Diseño y desarrollo del portal web de la Biblioteca Meira Delmar |
+| **Entidad beneficiaria** | Biblioteca Meira Delmar – Barranquilla, Atlántico |
+| **Entidad vinculada** | Gobernación del Atlántico / Alcaldía de Barranquilla *(confirmar cuál es la dueña del dominio y del hosting — ver §11)* |
+| **Tipo de proyecto** | Desarrollo de software – sitio web institucional informativo con formularios |
+| **Fecha de inicio** | 12 de noviembre de 2026 |
+| **Metodología** | Ágil incremental (Scrum simplificado, sprints de 1 semana) |
+
+---
+
+## 2. Planteamiento del problema  📘 *Capítulo 1*
+
+La Biblioteca Meira Delmar no cuenta con un portal propio, claro y organizado que permita a los ciudadanos:
+
+- Conocer su **historia** y su valor cultural para la ciudad.
+- Consultar sus **servicios**, horarios y espacios.
+- Explorar un **catálogo** de su colección.
+- **Contactar** a la biblioteca de forma directa.
+
+Actualmente la información, si existe, está dispersa dentro del sitio general de la Gobernación, lo que dificulta encontrarla. Se requiere un portal independiente pero **enlazable** desde el sitio de la Gobernación (sin modificarlo), que respete la identidad de marca institucional.
+
+**Pregunta problema:** ¿Cómo diseñar un portal web para la Biblioteca Meira Delmar que facilite el acceso a su información y servicios, integrándose con el ecosistema digital de la Gobernación sin modificar su sitio principal?
+
+---
+
+## 3. Objetivos  📘 *Capítulo 1*
+
+### Objetivo general
+Diseñar y desarrollar un portal web institucional para la Biblioteca Meira Delmar, accesible, responsivo y alineado con la identidad visual de la Gobernación, que permita a los visitantes conocer la historia, servicios y catálogo de la biblioteca y comunicarse con ella.
+
+### Objetivos específicos
+1. Levantar los requerimientos funcionales y no funcionales con la entidad.
+2. Diseñar la arquitectura de información y los prototipos (wireframes y mockups) del portal.
+3. Desarrollar el sitio con navegación sencilla, animaciones sutiles y diseño responsivo.
+4. Implementar formularios de contacto con validación y tratamiento de datos conforme a la Ley 1581 de 2012.
+5. Garantizar accesibilidad (WCAG 2.1 nivel AA) según la Resolución 1519 de 2020 de MinTIC.
+6. Realizar pruebas funcionales, de usabilidad, rendimiento y accesibilidad.
+7. Desplegar el portal y documentar su integración con el sitio de la Gobernación.
+
+---
+
+## 4. Justificación  📘 *Capítulo 1*
+
+- **Social/cultural:** acerca el patrimonio literario de Meira Delmar y la biblioteca a la ciudadanía.
+- **Institucional:** cumple lineamientos de Gobierno Digital y transparencia (Ley 1712 de 2014).
+- **Tecnológica:** un sitio moderno, ligero y accesible mejora la experiencia de usuario y el posicionamiento en buscadores.
+- **Operativa:** el sitio de la Gobernación no se toca; solo se agregan enlaces, reduciendo riesgo y costo.
+
+---
+
+## 5. Alcance  📘 *Capítulo 1*
+
+### Incluye
+- Portal con página principal y sub-páginas (ver §7).
+- Formulario de contacto (y opcionalmente PQRS / reserva de espacios).
+- Catálogo consultable (versión inicial con datos estáticos o JSON; ampliable a un sistema bibliotecario como Koha).
+- Diseño responsivo (celular, tablet, escritorio).
+- Manual de integración de enlaces para la Gobernación.
+
+### No incluye (fuera de alcance, salvo acuerdo)
+- Modificar el sitio de la Gobernación.
+- Préstamo en línea / sistema bibliotecario completo (ILS).
+- Pasarela de pagos o cuentas de usuario.
+
+---
+
+## 6. Requerimientos  📘 *Capítulo 3 – Análisis*
+
+### 6.1 Funcionales (RF)
+
+| ID | Requerimiento | Prioridad |
+|---|---|---|
+| RF-01 | Página de inicio con bienvenida, accesos rápidos y guía de navegación | Alta |
+| RF-02 | Sección "Historia" con línea de tiempo animada | Alta |
+| RF-03 | Sección "Servicios" (sala de lectura, préstamo, talleres, sala infantil, etc.) | Alta |
+| RF-04 | Sección "Catálogo" con búsqueda y filtros (título, autor, categoría) | Alta |
+| RF-05 | Sección "Agenda / Eventos" | Media |
+| RF-06 | Formulario de contacto con validación y aceptación de política de datos | Alta |
+| RF-07 | Sección "Visítanos" (horarios, dirección, mapa) | Alta |
+| RF-08 | Menú de navegación fijo + migas de pan (breadcrumbs) | Alta |
+| RF-09 | Enlaces de retorno al portal de la Gobernación | Alta |
+| RF-10 | Sección "Sobre Meira Delmar" (vida y obra de la poeta) | Media |
+| RF-11 | Preguntas frecuentes | Baja |
+
+### 6.2 No funcionales (RNF)
+
+| ID | Requerimiento |
+|---|---|
+| RNF-01 | **Diseño sobrio:** paleta limitada, sin saturación de color; sensación cálida de biblioteca |
+| RNF-02 | **Identidad de marca** de la Gobernación (logo, tipografía, colores institucionales, barra superior gov.co) |
+| RNF-03 | **Responsivo** (mobile-first) |
+| RNF-04 | **Accesibilidad** WCAG 2.1 AA (contraste, teclado, textos alternativos, lectores de pantalla) |
+| RNF-05 | **Rendimiento:** carga < 3 s; puntaje Lighthouse ≥ 90 |
+| RNF-06 | **Animaciones sutiles** que respeten `prefers-reduced-motion` |
+| RNF-07 | **Seguridad:** HTTPS, validación en servidor, protección anti-spam en formularios |
+| RNF-08 | **SEO** básico (metaetiquetas, sitemap, URLs amigables) |
+| RNF-09 | **Mantenibilidad:** código organizado y documentado; contenido fácil de actualizar |
+| RNF-10 | Compatibilidad con navegadores modernos (Chrome, Edge, Firefox, Safari) |
+
+---
+
+## 7. Arquitectura de información (mapa del sitio)  📘 *Capítulo 4 – Diseño*
+
+```
+Inicio
+├── La Biblioteca
+│   ├── Historia (línea de tiempo)
+│   ├── Meira Delmar (vida y obra)
+│   └── Misión, visión y equipo
+├── Servicios
+│   ├── Sala general y de consulta
+│   ├── Sala infantil
+│   ├── Préstamo
+│   └── Talleres y actividades
+├── Catálogo (buscador + filtros)
+├── Agenda / Eventos
+├── Visítanos (horarios, mapa, cómo llegar)
+└── Contacto (formulario + datos)
+      Pie de página: Gobernación del Atlántico · Política de datos · Accesibilidad · Redes
+```
+
+### Flujo de integración con la Gobernación
+```
+Sitio Gobernación (no se modifica, solo se agrega un enlace/banner)
+        │  clic en "Biblioteca Meira Delmar"
+        ▼
+Portal de la Biblioteca  ──►  botón "Volver a Gobernación" en encabezado y pie
+```
+
+---
+
+## 8. Lineamientos de diseño (UI/UX)  📘 *Capítulo 4 – Diseño*
+
+- **Concepto visual:** "entrar a una biblioteca": tonos papel/crema, madera suave y un color institucional como acento. Mucho espacio en blanco.
+- **Paleta propuesta (a ajustar con el manual de marca):**
+  - Fondo papel `#FAF7F2` · Texto tinta `#2B2B2B` · Acento institucional (azul/rojo de la Gobernación) · Madera `#8B6B4A` en detalles.
+- **Tipografía:** serif elegante para títulos (p. ej. *Lora* / *Playfair Display*) + sans-serif legible para texto (p. ej. *Inter* o la tipografía institucional).
+- **Animaciones:** aparición suave al hacer scroll, transición tipo "pasar página" entre secciones, efecto hover en tarjetas de libros. Duraciones 200–600 ms.
+- **Navegación guiada:** el inicio presenta 4–6 tarjetas grandes ("¿Qué quieres hacer hoy?") que llevan a cada sección.
+- **Componentes:** encabezado con barra gov.co, menú, hero, tarjetas, línea de tiempo, buscador, formulario, pie institucional.
+
+---
+
+## 9. Tecnologías propuestas  📘 *Capítulo 4 – Diseño / Capítulo 5 – Desarrollo*
+
+| Capa | Tecnología | Justificación |
+|---|---|---|
+| Estructura | **HTML5** semántico | Accesibilidad y SEO |
+| Estilos | **CSS3** (variables, Grid, Flexbox) | Diseño responsivo sin dependencias pesadas |
+| Interacción | **JavaScript** (vanilla) | Ligero, sin necesidad de compilación |
+| Animaciones | CSS + IntersectionObserver (opcional GSAP) | Fluidas y controlables |
+| Catálogo | Archivo **JSON** + búsqueda en el cliente | Simple; luego migrable a Koha u otra API |
+| Formularios | **PHP** (o servicio tipo Formspree) + reCAPTCHA/honeypot | Compatible con la mayoría de servidores de entidades públicas |
+| Control de versiones | **Git + GitHub** | Trazabilidad del desarrollo |
+| Diseño/Prototipos | **Figma** | Wireframes y mockups |
+| Pruebas | Lighthouse, WAVE, axe DevTools | Rendimiento y accesibilidad |
+| Despliegue | Servidor de la entidad / subdominio (p. ej. `biblioteca.atlantico.gov.co`) | Integración institucional |
+
+> Se elige un sitio estático porque es rápido, seguro, barato de alojar y fácil de enlazar desde el portal de la Gobernación.
+
+---
+
+## 10. Metodología y cronograma  📘 *Capítulo 2 – Metodología*
+
+Metodología ágil incremental: cada sprint entrega algo funcional y revisable por la entidad.
+
+| Fase / Sprint | Semana | Actividades | Entregable |
+|---|---|---|---|
+| **0. Inicio** | 1 | Reunión con la entidad, recolección de manual de marca, textos e imágenes | Acta + requerimientos |
+| **1. Análisis** | 1–2 | Requerimientos, casos de uso, análisis del sitio actual | Documento de requerimientos |
+| **2. Diseño** | 2–3 | Mapa del sitio, wireframes, mockups, guía de estilos | Prototipo en Figma |
+| **3. Desarrollo – base** | 3–4 | Estructura del proyecto, encabezado, pie, inicio | Página de inicio funcional |
+| **4. Desarrollo – contenido** | 4–5 | Historia, Meira Delmar, Servicios, Visítanos | Sub-páginas |
+| **5. Desarrollo – funciones** | 5–6 | Catálogo con búsqueda, formulario de contacto, agenda | Funcionalidades |
+| **6. Pruebas** | 7 | Funcionales, usabilidad, accesibilidad, rendimiento, navegadores | Informe de pruebas |
+| **7. Despliegue** | 8 | Publicación, guía de integración de enlaces, capacitación | Sitio en línea + manuales |
+| **8. Cierre** | 8 | Documentación final y entrega | Informe final (tesis) |
+
+---
+
+## 11. Riesgos y supuestos  📘 *Capítulo 2*
+
+| Riesgo | Mitigación |
+|---|---|
+| Falta de contenido oficial (textos, fotos) | Usar contenido provisional y pedirlo desde la semana 1 |
+| No se obtiene el manual de marca | Extraer colores/logo del sitio oficial y validarlo con la entidad |
+| Dudas sobre la entidad dueña (Alcaldía vs. Gobernación) | Confirmarlo en la primera reunión: define dominio, hosting y marca |
+| Sin acceso al servidor de la entidad | Desplegar demo en GitHub Pages/Netlify y entregar el paquete listo |
+| Catálogo real no disponible | Iniciar con muestra en JSON; dejar la estructura lista para conectar una API |
+
+---
+
+## 12. Marco normativo  📘 *Capítulo 2 – Marco legal*
+
+- **Ley 1712 de 2014** – Transparencia y acceso a la información pública.
+- **Ley 1581 de 2012** y Decreto 1377 de 2013 – Protección de datos personales (formularios).
+- **Resolución 1519 de 2020 (MinTIC)** – Estándares de publicación, accesibilidad web (WCAG 2.1 AA) y requisitos de sitios web de entidades públicas.
+- **Política de Gobierno Digital** (Decreto 767 de 2022).
+- **Lineamientos de marca gov.co** – barra superior y pie institucional.
+
+---
+
+## 13. Estructura sugerida del documento Word (tesis)
+
+1. Portada, agradecimientos, tabla de contenido, resumen / abstract
+2. **Capítulo 1 – Introducción:** problema, objetivos, justificación, alcance (§2–§5)
+3. **Capítulo 2 – Marco teórico, legal y metodología:** conceptos (UX, accesibilidad, diseño responsivo), normativa (§12), metodología y cronograma (§10), riesgos (§11)
+4. **Capítulo 3 – Análisis:** requerimientos (§6), casos de uso, análisis del sitio actual
+5. **Capítulo 4 – Diseño:** arquitectura de información (§7), wireframes/mockups, guía de estilos (§8), tecnologías (§9)
+6. **Capítulo 5 – Desarrollo:** lo que se va registrando en la bitácora (`02_BITACORA.md`) con capturas
+7. **Capítulo 6 – Pruebas y resultados**
+8. **Capítulo 7 – Implementación e integración con la Gobernación**
+9. Conclusiones, recomendaciones, bibliografía (formato APA), anexos (código, manuales)
