@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initNews();
   initAgenda();
   initContactForm();
+  initHeroParallax();
+  initDust();
+  initTour();
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 });
@@ -582,5 +585,91 @@ function initContactForm() {
       btn.classList.remove('is-loading');
       btn.querySelector('.btn__label').textContent = 'Enviar mensaje';
     }
+  });
+}
+
+/* ===== Portada inmersiva ===== */
+
+/* La foto de la fachada se mueve más lento que el scroll (efecto de profundidad) */
+function initHeroParallax() {
+  const bg = document.getElementById('heroBg');
+  if (!bg || reduceMotion) return;
+  const hero = bg.parentElement;
+  let ticking = false;
+  const update = () => {
+    const y = window.scrollY;
+    if (y < hero.offsetHeight) bg.style.transform = `translate3d(0, ${y * 0.3}px, 0)`;
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+}
+
+/* Partículas de polvo flotando en la luz: sensación de biblioteca antigua */
+function initDust() {
+  const canvas = document.getElementById('heroDust');
+  if (!canvas || reduceMotion) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, motas = [], visible = true, raf;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  const resize = () => {
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(70, (w * h) / 16000));
+    motas = Array.from({ length: n }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      r: Math.random() * 1.6 + 0.4,
+      vx: (Math.random() - 0.5) * 0.15, vy: -(Math.random() * 0.25 + 0.05),
+      a: Math.random() * 0.5 + 0.15, f: Math.random() * Math.PI * 2
+    }));
+  };
+  const draw = () => {
+    ctx.clearRect(0, 0, w, h);
+    for (const m of motas) {
+      m.x += m.vx; m.y += m.vy; m.f += 0.02;
+      if (m.y < -5) { m.y = h + 5; m.x = Math.random() * w; }
+      if (m.x < -5) m.x = w + 5; else if (m.x > w + 5) m.x = -5;
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(243, 217, 181, ${m.a * (0.6 + 0.4 * Math.sin(m.f))})`;
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    if (visible) raf = requestAnimationFrame(draw);
+  };
+  // Solo se anima cuando la portada está en pantalla (ahorra batería)
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    cancelAnimationFrame(raf);
+    if (visible) raf = requestAnimationFrame(draw);
+  }).observe(canvas);
+  window.addEventListener('resize', resize);
+  resize();
+}
+
+/* Recorrido por pisos: pestañas accesibles (clic o flechas del teclado) */
+function initTour() {
+  const tabs = [...document.querySelectorAll('.building .floor')];
+  if (!tabs.length) return;
+  const activar = (tab, enfocar) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      panel.hidden = !on;
+      panel.classList.toggle('is-active', on);
+    });
+    if (enfocar) tab.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => activar(t));
+    t.addEventListener('keydown', (e) => {
+      const mov = { ArrowUp: -1, ArrowLeft: -1, ArrowDown: 1, ArrowRight: 1 }[e.key];
+      if (mov) { e.preventDefault(); activar(tabs[(i + mov + tabs.length) % tabs.length], true); }
+      if (e.key === 'Home') { e.preventDefault(); activar(tabs[0], true); }
+      if (e.key === 'End') { e.preventDefault(); activar(tabs[tabs.length - 1], true); }
+    });
   });
 }

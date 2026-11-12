@@ -1,0 +1,17 @@
+# Configuración local del asistente (vista previa)
+.claude/
+
+# Archivos del sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Archivos temporales de Word cuando un .docx está abierto
+~$*.docx
+
+# Editores
+.vscode/
+.idea/
+
+# Python
+__pycache__/

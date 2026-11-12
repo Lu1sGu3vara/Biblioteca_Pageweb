@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblioteca Meira Delmar | Inicio</title>
   <meta name="description" content="Portal oficial de la Biblioteca Meira Delmar: historia, servicios, catálogo, agenda cultural y contacto.">
+  <link rel="icon" href="img/marca/favicon.ico" sizes="any">
+  <link rel="icon" href="img/marca/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
   <meta name="theme-color" content="#E40E20">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,27 +15,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="page-home">
   <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
   <div class="progress" id="progress" aria-hidden="true"></div>
 
   <!-- Barra gov.co (requisito Res. 1519 de 2020 – MinTIC) -->
   <div class="govbar" role="banner" aria-label="Portal del Estado colombiano">
     <div class="container govbar__inner">
-      <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
-      <a href="https://www.atlantico.gov.co" class="govbar__back">
-        <span aria-hidden="true">←</span> Volver al portal de la Gobernación
-      </a>
+      <div class="govbar__brand">
+        <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener" title="Portal del Estado colombiano">
+          <img src="img/logo-gov-co.png" alt="GOV.CO" width="112" height="24">
+        </a>
+        <span class="govbar__sep" aria-hidden="true"></span>
+        <span class="govbar__entity">Gobernación del Atlántico</span>
+      </div>
+      <a href="https://www.atlantico.gov.co" class="govbar__back"><span aria-hidden="true">←</span> Volver al portal de la Gobernación</a>
     </div>
   </div>
 
-  <!-- Encabezado principal -->
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="index.html" class="brand" aria-label="Biblioteca Meira Delmar, ir al inicio">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="32" height="32"><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1z M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        </span>
+        <img class="brand__logo" src="img/marca/logo-simbolo.png" alt="" width="142" height="99">
         <span class="brand__text">
           <span class="brand__name">Biblioteca Meira Delmar</span>
           <span class="brand__sub">Gobernación del Atlántico</span>
@@ -60,65 +64,52 @@
 
   <main id="contenido">
 
-    <!-- HERO: bienvenida -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero__inner">
-        <div class="hero__text">
-          <p class="eyebrow reveal">Biblioteca Pública Departamental · Desde 1922</p>
-          <h1 id="hero-title" class="hero__title reveal">
+    <!-- HERO inmersivo: fachada art déco de la biblioteca -->
+    <section class="hero-x" aria-labelledby="hero-title">
+      <div class="hero-x__bg" id="heroBg" aria-hidden="true">
+        <!-- Foto oficial del portal de la Gobernación (1600×1066). PENDIENTE: versión en alta resolución con autorización de uso -->
+        <img src="img/fachada.jpg" alt="" fetchpriority="high">
+      </div>
+      <canvas class="hero-x__dust" id="heroDust" aria-hidden="true"></canvas>
+      <div class="hero-x__deco" aria-hidden="true"></div>
+
+      <div class="container hero-x__inner">
+        <div class="hero-x__text">
+          <p class="hero-x__eyebrow reveal"><span class="deco-diamond" aria-hidden="true"></span>Biblioteca Pública Departamental · Desde 1922</p>
+          <h1 id="hero-title" class="hero-x__title reveal">
             Un lugar para
             <span class="rotator" aria-hidden="true"><span class="rotator__word" id="rotator">leer</span></span>
             <span class="sr-only">leer, aprender, imaginar y encontrarnos</span>
           </h1>
-          <p class="hero__lead reveal">
-            Más de cien años abriendo las puertas de la lectura a todo el Atlántico.
-            Descubre nuestra historia, busca en el catálogo y participa en las actividades de cada semana.
+          <p class="hero-x__lead reveal">
+            Más de cien años abriendo las puertas de la lectura al Atlántico, en el corazón art déco del Centro Histórico de Barranquilla.
           </p>
 
-          <form class="search reveal" action="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl" method="get" role="search" target="_blank">
+          <form class="search search--glass reveal" action="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl" method="get" role="search" target="_blank">
             <label for="q" class="sr-only">Buscar en el catálogo</label>
             <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg>
             <input type="search" id="q" name="q" class="search__input" placeholder="Busca un libro, autor o tema…" required>
             <button type="submit" class="btn btn--primary">Buscar</button>
           </form>
-          <p class="search-hints reveal">
+          <p class="search-hints search-hints--light reveal">
             <span>Prueba con:</span>
-            <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?q=Meira+Delmar" target="_blank" rel="noopener">Meira Delmar</a>
-            <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?q=Garc%C3%ADa+M%C3%A1rquez" target="_blank" rel="noopener">García Márquez</a>
+            <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=au&amp;q=Meira+Delmar" target="_blank" rel="noopener">Meira Delmar</a>
+            <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?idx=au&amp;q=Garc%C3%ADa+M%C3%A1rquez" target="_blank" rel="noopener">García Márquez</a>
             <a href="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl?q=Barranquilla" target="_blank" rel="noopener">Barranquilla</a>
           </p>
         </div>
 
-        <!-- Ilustración: estante de libros (decorativa) -->
-        <div class="shelf-wrap reveal" aria-hidden="true">
-          <div class="shelf" id="shelf">
-            <div class="shelf__row">
-              <span class="book" style="--h:88%;--c:var(--book-1)"></span>
-              <span class="book" style="--h:72%;--c:var(--book-2)"></span>
-              <span class="book" style="--h:95%;--c:var(--book-3)"></span>
-              <span class="book book--lean" style="--h:80%;--c:var(--book-4)"></span>
-              <span class="book" style="--h:66%;--c:var(--book-5)"></span>
-              <span class="book" style="--h:90%;--c:var(--book-2)"></span>
-              <span class="book" style="--h:76%;--c:var(--book-1)"></span>
-            </div>
-            <div class="shelf__board"></div>
-            <div class="shelf__row">
-              <span class="book" style="--h:70%;--c:var(--book-3)"></span>
-              <span class="book" style="--h:92%;--c:var(--book-5)"></span>
-              <span class="book" style="--h:84%;--c:var(--book-1)"></span>
-              <span class="book" style="--h:68%;--c:var(--book-4)"></span>
-              <span class="book" style="--h:96%;--c:var(--book-2)"></span>
-              <span class="book book--lean-r" style="--h:78%;--c:var(--book-3)"></span>
-            </div>
-            <div class="shelf__board"></div>
-          </div>
-          <div class="stamp"><span class="stamp__small">Desde</span><span class="stamp__big">1922</span><span class="stamp__small">★ ★ ★</span></div>
-        </div>
+        <div class="stamp stamp--hero" aria-hidden="true"><span class="stamp__small">Desde</span><span class="stamp__big">1922</span><span class="stamp__small">★ ★ ★</span></div>
       </div>
+
+      <a href="#descubre" class="hero-x__scroll" aria-label="Bajar para descubrir la biblioteca">
+        <span>Descubre</span>
+        <span class="hero-x__mouse" aria-hidden="true"></span>
+      </a>
     </section>
 
-    <!-- Cifras -->
-    <section class="stats" aria-label="La biblioteca en cifras">
+    <!-- Cifras: flotan sobre el borde inferior de la portada -->
+    <section class="stats stats--float" id="descubre" aria-label="La biblioteca en cifras">
       <div class="container">
         <ul class="stats__list" role="list">
           <li class="stat reveal"><span class="stat__num" data-count="100" data-suffix="+">100+</span><span class="stat__label">años de historia</span></li>
@@ -245,6 +236,81 @@
       </div>
     </section>
 
+    <!-- Recorrido interactivo por los pisos del edificio -->
+    <section class="section section--paper tour" aria-labelledby="tour-title">
+      <div class="container">
+        <header class="section__head section__head--center reveal">
+          <p class="eyebrow">Recorre la biblioteca</p>
+          <h2 id="tour-title" class="section__title">Tres pisos de lectura en un edificio art déco</h2>
+          <span class="deco-rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="tour__grid">
+          <!-- Corte del edificio: cada piso es un botón -->
+          <div class="building reveal" role="tablist" aria-label="Pisos del edificio">
+            <div class="building__crown" aria-hidden="true"><span></span><span></span><span></span></div>
+            <button type="button" class="floor" role="tab" id="tab-p3" aria-controls="panel-p3" aria-selected="false" tabindex="-1" data-floor="p3">
+              <span class="floor__num">3</span><span class="floor__name">Tercer piso</span>
+              <span class="floor__windows" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </button>
+            <button type="button" class="floor" role="tab" id="tab-p2" aria-controls="panel-p2" aria-selected="false" tabindex="-1" data-floor="p2">
+              <span class="floor__num">2</span><span class="floor__name">Segundo piso</span>
+              <span class="floor__windows" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </button>
+            <button type="button" class="floor is-active" role="tab" id="tab-p1" aria-controls="panel-p1" aria-selected="true" tabindex="0" data-floor="p1">
+              <span class="floor__num">1</span><span class="floor__name">Primer piso</span>
+              <span class="floor__windows" aria-hidden="true"><i></i><i></i><i></i><i class="door"></i><i></i><i></i></span>
+            </button>
+            <button type="button" class="floor floor--plaza" role="tab" id="tab-px" aria-controls="panel-px" aria-selected="false" tabindex="-1" data-floor="px">
+              <span class="floor__num">★</span><span class="floor__name">Plazoleta</span>
+            </button>
+          </div>
+
+          <!-- Paneles con los espacios de cada piso -->
+          <div class="tour__panels reveal">
+            <div class="tour__panel is-active" role="tabpanel" id="panel-p1" aria-labelledby="tab-p1">
+              <p class="tour__kicker">Primer piso</p>
+              <h3 class="tour__title">Lectura para todos</h3>
+              <ul class="spaces" role="list">
+                <li><b>Sala general de lectura</b><span>Estantería abierta para 100 personas.</span></li>
+                <li><b>Sala infantil</b><span>Hora del cuento, títeres y juegos.</span></li>
+                <li><b>Aula tiflotecnológica</b><span>400+ libros en braille y lector de pantalla.</span></li>
+                <li><b>Auditorio</b><span>114 sillas para conversatorios, cine y recitales.</span></li>
+              </ul>
+            </div>
+            <div class="tour__panel" role="tabpanel" id="panel-p2" aria-labelledby="tab-p2" hidden>
+              <p class="tour__kicker">Segundo piso</p>
+              <h3 class="tour__title">Memoria y tecnología</h3>
+              <ul class="spaces" role="list">
+                <li><b>Museo Meira Delmar</b><span>Manuscritos, fotos y objetos de la poeta.</span></li>
+                <li><b>Hemeroteca</b><span>La historia del Atlántico en su prensa.</span></li>
+                <li><b>Sala de internet</b><span>Computadores con acceso gratuito.</span></li>
+                <li><b>Sala audiovisual y aula multimedia</b><span>Películas, audiolibros y talleres digitales.</span></li>
+              </ul>
+            </div>
+            <div class="tour__panel" role="tabpanel" id="panel-p3" aria-labelledby="tab-p3" hidden>
+              <p class="tour__kicker">Tercer piso</p>
+              <h3 class="tour__title">El corazón técnico</h3>
+              <ul class="spaces" role="list">
+                <li><b>Procesos técnicos</b><span>Donde cada libro se cataloga antes de llegar a la estantería.</span></li>
+                <li><b>Taller de restauración</b><span>Cuidado del patrimonio bibliográfico.</span></li>
+                <li><b>Salón múltiple</b><span>Reuniones, capacitaciones y eventos.</span></li>
+              </ul>
+            </div>
+            <div class="tour__panel" role="tabpanel" id="panel-px" aria-labelledby="tab-px" hidden>
+              <p class="tour__kicker">Exterior</p>
+              <h3 class="tour__title">La plazoleta</h3>
+              <ul class="spaces" role="list">
+                <li><b>Eventos al aire libre</b><span>Espacio para más de 1.000 personas.</span></li>
+                <li><b>Frente al Parque Centenario</b><span>En pleno Centro Histórico de Barranquilla.</span></li>
+              </ul>
+            </div>
+            <a href="visitanos.html" class="link-arrow tour__cta">Planear mi visita <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Visítanos -->
     <section class="section" aria-labelledby="visit-title">
       <div class="container visit visit--light">
@@ -282,7 +348,7 @@
   <footer class="footer">
     <div class="container footer__grid">
       <div>
-        <p class="footer__brand">Biblioteca Meira Delmar</p>
+        <p class="footer__brand"><img src="img/marca/logo-completo-blanco.png" alt="Biblioteca Pública Departamental Meira Delmar" width="413" height="99" loading="lazy"></p>
         <p class="footer__text">Un espacio de la Gobernación del Atlántico para la lectura, la memoria y la cultura.</p>
       </div>
       <nav aria-label="Enlaces del pie de página">
@@ -309,7 +375,16 @@
     </div>
     <div class="govbar govbar--footer">
       <div class="container govbar__inner">
-        <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+        <div class="govbar__brand">
+          <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener" title="Portal del Estado colombiano">
+            <img src="img/logo-gov-co.png" alt="GOV.CO" width="112" height="24">
+          </a>
+          <a href="https://colombia.co" class="govbar__country" target="_blank" rel="noopener" title="Marca país Colombia">
+            <img src="img/logo-pais-co.png" alt="Colombia" width="26" height="25">
+          </a>
+          <span class="govbar__sep" aria-hidden="true"></span>
+          <span class="govbar__entity">Gobernación del Atlántico</span>
+        </div>
       </div>
     </div>
   </footer>

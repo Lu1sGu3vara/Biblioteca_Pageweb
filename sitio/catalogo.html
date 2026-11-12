@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo | Biblioteca Meira Delmar</title>
   <meta name="description" content="Busca libros en el catálogo en línea de la Biblioteca Meira Delmar y accede a la biblioteca digital y los libros electrónicos.">
+  <link rel="icon" href="img/marca/favicon.ico" sizes="any">
+  <link rel="icon" href="img/marca/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
   <meta name="theme-color" content="#E40E20">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +21,13 @@
 
   <div class="govbar" role="banner" aria-label="Portal del Estado colombiano">
     <div class="container govbar__inner">
-      <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+      <div class="govbar__brand">
+        <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener" title="Portal del Estado colombiano">
+          <img src="img/logo-gov-co.png" alt="GOV.CO" width="112" height="24">
+        </a>
+        <span class="govbar__sep" aria-hidden="true"></span>
+        <span class="govbar__entity">Gobernación del Atlántico</span>
+      </div>
       <a href="https://www.atlantico.gov.co" class="govbar__back"><span aria-hidden="true">←</span> Volver al portal de la Gobernación</a>
     </div>
   </div>
@@ -26,9 +35,7 @@
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="index.html" class="brand" aria-label="Biblioteca Meira Delmar, ir al inicio">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="32" height="32"><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1z M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        </span>
+        <img class="brand__logo" src="img/marca/logo-simbolo.png" alt="" width="142" height="99">
         <span class="brand__text">
           <span class="brand__name">Biblioteca Meira Delmar</span>
           <span class="brand__sub">Gobernación del Atlántico</span>
@@ -154,7 +161,7 @@
   <footer class="footer">
     <div class="container footer__grid">
       <div>
-        <p class="footer__brand">Biblioteca Meira Delmar</p>
+        <p class="footer__brand"><img src="img/marca/logo-completo-blanco.png" alt="Biblioteca Pública Departamental Meira Delmar" width="413" height="99" loading="lazy"></p>
         <p class="footer__text">Un espacio de la Gobernación del Atlántico para la lectura, la memoria y la cultura.</p>
       </div>
       <nav aria-label="Enlaces del pie de página">
@@ -181,7 +188,16 @@
     </div>
     <div class="govbar govbar--footer">
       <div class="container govbar__inner">
-        <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener">GOV.CO</a>
+        <div class="govbar__brand">
+          <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener" title="Portal del Estado colombiano">
+            <img src="img/logo-gov-co.png" alt="GOV.CO" width="112" height="24">
+          </a>
+          <a href="https://colombia.co" class="govbar__country" target="_blank" rel="noopener" title="Marca país Colombia">
+            <img src="img/logo-pais-co.png" alt="Colombia" width="26" height="25">
+          </a>
+          <span class="govbar__sep" aria-hidden="true"></span>
+          <span class="govbar__entity">Gobernación del Atlántico</span>
+        </div>
       </div>
     </div>
   </footer>
