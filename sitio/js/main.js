@@ -6,23 +6,34 @@
    ========================================================= */
 document.documentElement.classList.add('js');
 
+// Ejecuta tareas no urgentes cuando el navegador queda libre, para no bloquear la carga inicial
+const enCalma = (fn) => ('requestIdleCallback' in window
+  ? requestIdleCallback(fn, { timeout: 1200 })
+  : setTimeout(fn, 200));
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Imprescindible para ver y usar la página
   initMobileNav();
-  initHeaderShadow();
   initReveal();
-  initSubnav();
-  initHours();
-  initProgressAndTop();
   initRotator();
-  initCounters();
-  initNews();
+  initNews();       // solo inicia la descarga del JSON; no mide la página
   initAgenda();
   initContactForm();
-  initHeroParallax();
-  initDust();
-  initTour();
-  const year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
+
+  // Mejoras que pueden esperar al primer momento libre
+  enCalma(() => {
+    initHeaderShadow();
+    initProgressAndTop();
+    initHours();
+    initSubnav();
+    initCounters();
+    initHeroParallax();
+    initTour();
+    const year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
+  });
+  // Las partículas son decoración: arrancan cuando todo terminó de cargar
+  window.addEventListener('load', () => enCalma(initDust), { once: true });
 });
 
 /* Menú móvil: abre/cierra, cierra con Escape o al elegir un enlace */

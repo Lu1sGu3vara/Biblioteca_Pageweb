@@ -10,6 +10,12 @@
    7. Animaciones y movimiento reducido
    ========================================================= */
 
+/* Fuentes alojadas en el propio sitio (variables, solo caracteres latinos):
+   evitan el bloqueo de render y la conexión a servidores externos */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 600; font-display: swap; src: url('../fuentes/inter-variable.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Lora'; font-style: normal; font-weight: 500 700; font-display: swap; src: url('../fuentes/lora-variable.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Lora'; font-style: italic; font-weight: 500 700; font-display: swap; src: url('../fuentes/lora-italica-variable.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 /* ---------- 1. Variables ---------- */
 :root {
   /* Colores: tonos papel, tinta y madera. El acento se ajusta con el manual de marca. */
@@ -133,7 +139,7 @@ picture { display: contents; } /* el <img> interno conserva el posicionamiento d
 .govbar__tools { display: flex; align-items: center; gap: 14px; }
 
 /* ---------- Selector de idioma ---------- */
-.lang { position: relative; }
+.lang { position: relative; min-width: 74px; height: 30px; } /* reserva el espacio del botón antes de montarlo */
 .flag { width: 22px; height: 15px; border-radius: 3px; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(0,0,0,.12); overflow: hidden; display: block; }
 .lang__btn {
   display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px 0 7px; cursor: pointer;
@@ -1229,6 +1235,13 @@ a.tile:hover .card__icon { background: var(--accent); color: #fff; }
   .hours td { white-space: normal; }
   .visit-grid > * { min-width: 0; }
   .page-hero::after { width: 160px; height: 80px; }
+}
+
+/* Las secciones fuera de pantalla no se dibujan hasta que el visitante se acerca:
+   reduce el trabajo de la carga inicial en celulares */
+main > .section:not(:first-child), main > .feature, .footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 /* ---------- 7. Animaciones ---------- */

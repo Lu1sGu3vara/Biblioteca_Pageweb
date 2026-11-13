@@ -16,9 +16,8 @@
   <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
   <meta name="theme-color" content="#E40E20">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="preload" href="fuentes/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fuentes/lora-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -36,7 +35,9 @@
       </div>
       <div class="govbar__tools">
         <a href="https://www.atlantico.gov.co" class="govbar__back"><span aria-hidden="true">←</span> <span class="govbar__back-long">Volver al portal de la </span>Gobernación</a>
-        <div class="lang notranslate" data-lang-switcher></div>
+        <div class="lang notranslate" data-lang-switcher>
+          <button type="button" class="lang__btn" aria-haspopup="true" aria-expanded="false" aria-label="Cambiar idioma. Idioma actual: Español"><svg class="flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="10" fill="#FCD116"/><rect y="10" width="30" height="5" fill="#003893"/><rect y="15" width="30" height="5" fill="#CE1126"/></svg><span class="lang__code">ES</span><svg class="lang__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+        </div>
       </div>
     </div>
   </div>
@@ -44,7 +45,7 @@
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="index.html" class="brand" aria-label="Biblioteca Meira Delmar, ir al inicio">
-        <img class="brand__logo" src="img/marca/logo-simbolo.png" alt="" width="142" height="99">
+        <img class="brand__logo" src="img/marca/logo-simbolo.webp" alt="" width="120" height="84">
         <span class="brand__text">
           <span class="brand__name notranslate">Biblioteca Meira Delmar</span>
           <span class="brand__sub">Gobernación del Atlántico</span>
@@ -148,10 +149,10 @@
       <div class="container govbar__inner">
         <div class="govbar__brand">
           <a href="https://www.gov.co" class="govbar__logo" target="_blank" rel="noopener" title="Portal del Estado colombiano">
-            <img src="img/logo-gov-co.png" alt="GOV.CO" width="112" height="24">
+            <img src="img/logo-gov-co.png" alt="GOV.CO" width="112" height="24" loading="lazy">
           </a>
           <a href="https://colombia.co" class="govbar__country" target="_blank" rel="noopener" title="Marca país Colombia">
-            <img src="img/logo-pais-co.png" alt="Colombia" width="26" height="25">
+            <img src="img/logo-pais-co.png" alt="Colombia" width="26" height="25" loading="lazy">
           </a>
           <span class="govbar__sep" aria-hidden="true"></span>
           <span class="govbar__entity notranslate">Gobernación del Atlántico</span>

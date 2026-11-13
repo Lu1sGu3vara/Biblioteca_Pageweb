@@ -11,6 +11,7 @@ Options -Indexes
   AddType image/webp .webp
   AddType application/json .json
   AddType text/calendar .ics
+  AddType font/woff2 .woff2
 </IfModule>
 
 # Compresión: HTML, CSS, JS y JSON viajan hasta 70 % más livianos
@@ -29,6 +30,7 @@ Options -Indexes
   ExpiresByType image/jpeg "access plus 30 days"
   ExpiresByType image/png "access plus 30 days"
   ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
 # Cabeceras de seguridad
@@ -37,8 +39,8 @@ Options -Indexes
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  # Orígenes permitidos: Google Fonts, el catálogo Koha, el traductor de Google y el mapa de Google
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gstatic.com https://www.google.com https://translate.google.com https://fonts.gstatic.com; frame-src https://www.google.com https://translate.google.com https://translate.googleapis.com; connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com; form-action 'self' https://biblioteca.atlantico.gov.co:8001; base-uri 'self'"
+  # Orígenes permitidos: el catálogo Koha, el traductor de Google y el mapa de Google (las fuentes son propias)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com; style-src 'self' 'unsafe-inline' https://www.gstatic.com; font-src 'self'; img-src 'self' data: https://www.gstatic.com https://www.google.com https://translate.google.com; frame-src https://www.google.com https://translate.google.com https://translate.googleapis.com; connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com; form-action 'self' https://biblioteca.atlantico.gov.co:8001; base-uri 'self'"
 </IfModule>
 
 # Protege archivos que no deben verse desde el navegador

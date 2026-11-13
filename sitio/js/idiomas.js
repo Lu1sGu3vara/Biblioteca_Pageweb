@@ -120,83 +120,15 @@
     if (intentos > 0) setTimeout(() => aplicarConSelector(code, intentos - 1), 150);
   }
 
-  /* ---- Interfaz ---- */
+  /* ---- Interfaz ----
+     El botón viene escrito en el HTML de cada página; el panel con las banderas
+     se construye la primera vez que se abre, para no hacer ese trabajo durante la carga. */
   function montar(raiz) {
-    const actual = leerIdioma();
     const info = (code) => IDIOMAS.find((i) => i.code === code);
-
-    raiz.innerHTML = `
-      <button type="button" class="lang__btn" aria-haspopup="true" aria-expanded="false" aria-label="Cambiar idioma. Idioma actual: ${info(actual).nombre}">
-        ${bandera(actual)}<span class="lang__code">${actual === 'zh-TW' ? '中文' : actual.slice(0, 2).toUpperCase()}</span>
-        <svg class="lang__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg>
-      </button>
-      <div class="lang__panel" role="menu" aria-label="Idioma del sitio" hidden>
-        <p class="lang__title">Idioma <span>·</span> Language</p>
-        <ul class="lang__list" role="none">
-          ${IDIOMAS.map((i) => `
-            <li role="none">
-              <button type="button" class="lang__opt${i.code === actual ? ' is-current' : ''}" role="menuitemradio"
-                aria-checked="${i.code === actual}" data-code="${i.code}" lang="${i.code}">
-                ${bandera(i.code)}
-                <span class="lang__name">${i.nombre}<small>${i.region}</small></span>
-                <svg class="lang__check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
-              </button>
-            </li>`).join('')}
-        </ul>
-        <p class="lang__note">Traducción automática de Google. El texto oficial es el español.</p>
-      </div>`;
-
     const btn = raiz.querySelector('.lang__btn');
-    const panel = raiz.querySelector('.lang__panel');
-    const opciones = [...raiz.querySelectorAll('.lang__opt')];
-
-    const abrir = (enfocar) => {
-      panel.hidden = false;
-      void panel.offsetWidth; // fuerza el estilo inicial para que la transición se vea
-      raiz.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-      if (enfocar) (opciones.find((o) => o.classList.contains('is-current')) || opciones[0]).focus();
-    };
-    const cerrar = (devolverFoco) => {
-      raiz.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      setTimeout(() => { if (!raiz.classList.contains('is-open')) panel.hidden = true; }, 200);
-      if (devolverFoco) btn.focus();
-    };
-
-    btn.addEventListener('click', () => (raiz.classList.contains('is-open') ? cerrar() : abrir(false)));
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(true); }
-    });
-    panel.addEventListener('keydown', (e) => {
-      const i = opciones.indexOf(document.activeElement);
-      if (e.key === 'ArrowDown') { e.preventDefault(); opciones[(i + 1) % opciones.length].focus(); }
-      if (e.key === 'ArrowUp') { e.preventDefault(); opciones[(i - 1 + opciones.length) % opciones.length].focus(); }
-      if (e.key === 'Home') { e.preventDefault(); opciones[0].focus(); }
-      if (e.key === 'End') { e.preventDefault(); opciones[opciones.length - 1].focus(); }
-      if (e.key === 'Escape' || e.key === 'Tab') cerrar(e.key === 'Escape');
-    });
-    document.addEventListener('click', (e) => { if (!raiz.contains(e.target)) cerrar(); });
-
-    opciones.forEach((o) => o.addEventListener('click', async () => {
-      const code = o.dataset.code;
-      if (code === leerIdioma()) { cerrar(true); return; }
-      guardarIdioma(code);
-      if (code === IDIOMA_BASE) { location.reload(); return; } // volver al original exige recargar
-      raiz.classList.add('is-loading');
-      try {
-        await cargarTraductor();
-        traducirTitulo(code);
-        aplicarConSelector(code);
-        actualizarBoton(code);
-        cerrar(true);
-      } catch (err) {
-        guardarIdioma(IDIOMA_BASE);
-        raiz.querySelector('.lang__note').textContent = 'No se pudo conectar con el traductor. Revisa tu conexión e inténtalo de nuevo.';
-      } finally {
-        raiz.classList.remove('is-loading');
-      }
-    }));
+    if (!btn) return;
+    let panel = null;
+    let opciones = [];
 
     function actualizarBoton(code) {
       btn.querySelector('.flag').outerHTML = bandera(code);
@@ -209,8 +141,83 @@
       });
     }
 
+    function construirPanel() {
+      const actual = leerIdioma();
+      raiz.insertAdjacentHTML('beforeend', `
+        <div class="lang__panel" role="menu" aria-label="Idioma del sitio" hidden>
+          <p class="lang__title">Idioma <span>·</span> Language</p>
+          <ul class="lang__list" role="none">
+            ${IDIOMAS.map((i) => `
+              <li role="none">
+                <button type="button" class="lang__opt${i.code === actual ? ' is-current' : ''}" role="menuitemradio"
+                  aria-checked="${i.code === actual}" data-code="${i.code}" lang="${i.code}">
+                  ${bandera(i.code)}
+                  <span class="lang__name">${i.nombre}<small>${i.region}</small></span>
+                  <svg class="lang__check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                </button>
+              </li>`).join('')}
+          </ul>
+          <p class="lang__note">Traducción automática de Google. El texto oficial es el español.</p>
+        </div>`);
+      panel = raiz.querySelector('.lang__panel');
+      opciones = [...panel.querySelectorAll('.lang__opt')];
+
+      panel.addEventListener('keydown', (e) => {
+        const i = opciones.indexOf(document.activeElement);
+        if (e.key === 'ArrowDown') { e.preventDefault(); opciones[(i + 1) % opciones.length].focus(); }
+        if (e.key === 'ArrowUp') { e.preventDefault(); opciones[(i - 1 + opciones.length) % opciones.length].focus(); }
+        if (e.key === 'Home') { e.preventDefault(); opciones[0].focus(); }
+        if (e.key === 'End') { e.preventDefault(); opciones[opciones.length - 1].focus(); }
+        if (e.key === 'Escape' || e.key === 'Tab') cerrar(e.key === 'Escape');
+      });
+
+      opciones.forEach((o) => o.addEventListener('click', async () => {
+        const code = o.dataset.code;
+        if (code === leerIdioma()) { cerrar(true); return; }
+        guardarIdioma(code);
+        if (code === IDIOMA_BASE) { location.reload(); return; } // volver al original exige recargar
+        raiz.classList.add('is-loading');
+        try {
+          await cargarTraductor();
+          traducirTitulo(code);
+          aplicarConSelector(code);
+          actualizarBoton(code);
+          cerrar(true);
+        } catch (err) {
+          guardarIdioma(IDIOMA_BASE);
+          panel.querySelector('.lang__note').textContent = 'No se pudo conectar con el traductor. Revisa tu conexión e inténtalo de nuevo.';
+        } finally {
+          raiz.classList.remove('is-loading');
+        }
+      }));
+    }
+
+    const abrir = (enfocar) => {
+      if (!panel) construirPanel();
+      panel.hidden = false;
+      void panel.offsetWidth; // fuerza el estilo inicial para que la transición se vea
+      raiz.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      if (enfocar) (opciones.find((o) => o.classList.contains('is-current')) || opciones[0]).focus();
+    };
+    function cerrar(devolverFoco) {
+      if (!panel) return;
+      raiz.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      setTimeout(() => { if (!raiz.classList.contains('is-open')) panel.hidden = true; }, 200);
+      if (devolverFoco) btn.focus();
+    }
+
+    btn.addEventListener('click', () => (raiz.classList.contains('is-open') ? cerrar() : abrir(false)));
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(true); }
+    });
+    document.addEventListener('click', (e) => { if (!raiz.contains(e.target)) cerrar(); });
+
     // Si el visitante ya había elegido otro idioma, se traduce al cargar
+    const actual = leerIdioma();
     if (actual !== IDIOMA_BASE) {
+      actualizarBoton(actual);
       traducirTitulo(actual);
       cargarTraductor().then(() => aplicarConSelector(actual)).catch(() => guardarIdioma(IDIOMA_BASE));
     }
