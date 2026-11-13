@@ -22,13 +22,13 @@ Con esta entrada, el portal queda con **9 páginas completas** y sin enlaces rot
 
 **Problema:** todas las páginas repiten la barra gov.co, el menú y el pie de página. Copiarlos a mano en cada archivo es lento y produce errores.
 
-**Solución:** un script en Python, `herramientas/generar_paginas.py`, que:
+**Solución:** un script en Python, `herramientas/generar-paginas.py`, que:
 1. Toma el encabezado y el pie de una página modelo.
 2. Le pega el contenido propio de cada página (guardado en `herramientas/contenido/`).
 3. Ajusta automáticamente el título, la descripción para buscadores y el enlace activo del menú.
 
 ```
-python herramientas/generar_paginas.py
+python herramientas/generar-paginas.py
 ```
 
 **Justificación:** aplica el principio **DRY** (*Don't Repeat Yourself*). Cambiar el menú en un solo lugar actualiza todas las páginas generadas, y el sitio sigue siendo HTML estático, sin necesidad de un servidor especial.

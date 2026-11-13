@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initProgressAndTop();
   initRotator();
   initCounters();
-  initShelfTilt();
   initNews();
   initAgenda();
   initContactForm();
@@ -45,7 +44,6 @@ function initMobileNav() {
   });
 }
 
-/* Encabezado: agrega borde/sombra cuando la página se desplaza */
 function initHeaderShadow() {
   const header = document.getElementById('header');
   if (!header) return;
@@ -81,7 +79,6 @@ function initReveal() {
   items.forEach((el) => observer.observe(el));
 }
 
-/* Submenú interno: resalta la sección que se está leyendo */
 function initSubnav() {
   const links = document.querySelectorAll('.subnav a[href^="#"]');
   if (!links.length || !('IntersectionObserver' in window)) return;
@@ -112,8 +109,8 @@ const HORARIO = { dias: [1, 2, 3, 4, 5], abre: '08:00', cierra: '16:00' };
 
 function initHours() {
   const table = document.querySelector('.hours');
-  const status = document.getElementById('openStatus');
-  if (!table && !status) return;
+  const estados = document.querySelectorAll('#openStatus, [data-open-status]');
+  if (!table && !estados.length) return;
 
   // Hora de Colombia, sin importar la zona horaria del visitante
   const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' }));
@@ -125,16 +122,15 @@ function initHours() {
     const row = table.querySelector(`tr[data-day~="${today}"]`);
     if (row) row.classList.add('is-today');
   }
-  if (!status) return;
-
   const open = HORARIO.dias.includes(today) && minutes >= toMin(HORARIO.abre) && minutes < toMin(HORARIO.cierra);
-  status.textContent = open ? 'Abierto ahora · cierra a las 4:00 p. m.' : 'Cerrado en este momento · abrimos de lunes a viernes, 8:00 a. m.';
-  status.classList.add(open ? 'status--open' : 'status--closed');
+  estados.forEach((status) => {
+    status.textContent = open ? 'Abierto ahora · cierra a las 4:00 p. m.' : 'Cerrado en este momento · abrimos de lunes a viernes, 8:00 a. m.';
+    status.classList.add(open ? 'status--open' : 'status--closed');
+  });
 }
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* Barra de progreso de lectura + botón "volver arriba" */
 function initProgressAndTop() {
   const bar = document.getElementById('progress');
   const top = document.getElementById('toTop');
@@ -153,23 +149,22 @@ function initProgressAndTop() {
   update();
 }
 
-/* Palabra que rota en el título principal */
 function initRotator() {
   const el = document.getElementById('rotator');
   if (!el || reduceMotion) return;
-  const words = ['leer', 'aprender', 'imaginar', 'encontrarnos'];
+  const palabras = [...el.querySelectorAll('.rotator__word')];
   let i = 0;
   setInterval(() => {
-    el.classList.add('is-out');
-    setTimeout(() => {
-      i = (i + 1) % words.length;
-      el.textContent = words[i];
-      el.classList.remove('is-out');
-    }, 350);
-  }, 2600);
+    if (document.hidden) return; // no acumula cambios mientras la pestaña está en segundo plano
+    const actual = palabras[i];
+    i = (i + 1) % palabras.length;
+    actual.classList.replace('is-active', 'is-leaving');
+    palabras[i].classList.remove('is-leaving');
+    palabras[i].classList.add('is-active');
+    setTimeout(() => actual.classList.remove('is-leaving'), 600);
+  }, 2800);
 }
 
-/* Cifras que cuentan desde 0 al aparecer en pantalla */
 function initCounters() {
   const nums = document.querySelectorAll('[data-count]');
   if (!nums.length || reduceMotion || !('IntersectionObserver' in window)) return;
@@ -190,20 +185,6 @@ function initCounters() {
     entries.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
   }, { threshold: 0.6 });
   nums.forEach((n) => io.observe(n));
-}
-
-/* Estante: leve inclinación 3D siguiendo el mouse */
-function initShelfTilt() {
-  const shelf = document.getElementById('shelf');
-  if (!shelf || reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
-  const wrap = shelf.parentElement;
-  wrap.addEventListener('mousemove', (e) => {
-    const r = wrap.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    shelf.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 6}deg)`;
-  });
-  wrap.addEventListener('mouseleave', () => { shelf.style.transform = ''; });
 }
 
 /* ===== Noticias y eventos (se leen de data/noticias.json) ===== */
@@ -286,7 +267,7 @@ async function initNews() {
   try {
     items = await cargarNoticias();
   } catch (err) {
-    list.innerHTML = '<p class="news__empty">No pudimos cargar las actividades en este momento. Consulta la <a href="agenda.html">agenda completa</a>.</p>';
+    mostrarErrorCarga(list, 'No pudimos cargar las actividades de la semana. Revisa tu conexión e inténtalo de nuevo.', initNews);
     return;
   }
 
@@ -298,6 +279,17 @@ async function initNews() {
   });
   // Destacados primero y luego por fecha más cercana
   items.sort((a, b) => (Number(!!b.destacado) - Number(!!a.destacado)) || (parseFecha(a.fecha) - parseFecha(b.fecha)));
+
+  // Ficha "Agenda" de la grilla: resumen en vivo de los próximos 7 días
+  const ficha = document.getElementById('tileAgenda');
+  if (ficha) {
+    const semana = items.filter((n) => n.categoria !== 'noticia' && (parseFecha(n.fecha) - hoy) / 86400000 < 7);
+    if (semana.length) {
+      const proxima = [...semana].sort((a, b) => parseFecha(a.fecha) - parseFecha(b.fecha))[0];
+      const f = parseFecha(proxima.fecha);
+      ficha.textContent = `${semana.length} ${semana.length === 1 ? 'actividad' : 'actividades'} en los próximos 7 días. La siguiente: ${proxima.titulo}, ${DIAS[f.getDay()]} ${f.getDate()} de ${MESES[f.getMonth()]}.`;
+    }
+  }
 
   const render = (filtro) => {
     const visibles = items.filter((n) => filtro === 'todas' || n.categoria === filtro).slice(0, max);
@@ -325,14 +317,33 @@ async function initNews() {
 let _noticiasCache = null;
 function cargarNoticias() {
   if (!_noticiasCache) {
-    _noticiasCache = fetch('data/noticias.json', { cache: 'no-cache' })
+    const ctrl = new AbortController();
+    const limite = setTimeout(() => ctrl.abort(), 10000); // conexiones lentas: no dejar el esqueleto indefinidamente
+    _noticiasCache = fetch('data/noticias.json', { cache: 'no-cache', signal: ctrl.signal })
       .then((res) => { if (!res.ok) throw new Error(res.status); return res.json(); })
-      .then((data) => data.noticias || []);
+      .then((data) => {
+        if (!Array.isArray(data.noticias)) throw new Error('formato');
+        // Descarta entradas mal escritas en el JSON en lugar de romper toda la sección
+        return data.noticias.filter((n) => n && typeof n.titulo === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(n.fecha || ''));
+      })
+      .catch((err) => { _noticiasCache = null; throw err; }) // permite reintentar
+      .finally(() => clearTimeout(limite));
   }
   return _noticiasCache;
 }
 
-/* Activa un grupo de botones tipo filtro y avisa cuál quedó seleccionado */
+function mostrarErrorCarga(contenedor, texto, reintentar) {
+  contenedor.innerHTML = `
+    <div class="load-error" role="alert">
+      <p>${texto}</p>
+      <button type="button" class="btn btn--primary">Reintentar carga</button>
+    </div>`;
+  contenedor.querySelector('button').addEventListener('click', () => {
+    contenedor.innerHTML = '<p class="news__empty">Cargando…</p>';
+    reintentar();
+  }, { once: true });
+}
+
 function grupoBotones(contenedor, selector, atributo, alCambiar) {
   if (!contenedor) return;
   contenedor.addEventListener('click', (e) => {
@@ -361,7 +372,7 @@ async function initAgenda() {
   try {
     items = await cargarNoticias();
   } catch (err) {
-    list.innerHTML = '<p class="news__empty">No pudimos cargar la agenda en este momento. Inténtalo más tarde.</p>';
+    mostrarErrorCarga(list, 'No pudimos cargar la agenda. Revisa tu conexión e inténtalo de nuevo.', initAgenda);
     return;
   }
   const hoy = hoyBogota();
@@ -385,7 +396,6 @@ async function initAgenda() {
       return;
     }
 
-    // Agrupar por mes
     const grupos = new Map();
     visibles.forEach((n) => {
       const f = parseFecha(n.fecha);
@@ -409,7 +419,6 @@ async function initAgenda() {
   let t;
   input?.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { estado.q = input.value; render(); }, 200); });
 
-  // Botón "Agregar a mi calendario"
   list.addEventListener('click', (e) => {
     const btn = e.target.closest('.ics-btn');
     if (!btn) return;

@@ -138,7 +138,9 @@ Liderar la política de patrimonio, lectura y bibliotecas municipales junto con 
 
 ## Referencias (APA 7)
 
+- Decreto N.º 00924 de 1998. Gobernación del Atlántico. https://www.atlantico.gov.co/images/stories/biblioteca/decretobiblio.pdf
 - El Heraldo. (2016, 15 de abril). *Biblioteca Meira Delmar cumple 95 años mañana*. https://www.elheraldo.co/tendencias/2016/04/15/biblioteca-meira-delmar-cumple-95-anos-manana-254683/
+- El Tiempo. (2022). *Meira Delmar: cien años de una voz poética del Caribe*. https://www.eltiempo.com/cultura/musica-y-libros/meira-delmar-cien-anos-de-una-voz-poetica-del-caribe-723749
 - Gobernación del Atlántico. (s. f.-a). *Biografía Meira Delmar*. https://www.atlantico.gov.co/index.php/meira-delmar/biografia
 - Gobernación del Atlántico. (s. f.-b). *Biblioteca Pública Departamental Meira Delmar*. https://www.atlantico.gov.co/index.php/bibiloteca-departamental
 - Gobernación del Atlántico. (s. f.-c). *Servicios de la Biblioteca*. https://www.atlantico.gov.co/index.php/servicios
@@ -146,8 +148,6 @@ Liderar la política de patrimonio, lectura y bibliotecas municipales junto con 
 - Gobernación del Atlántico. (s. f.-e). *Infraestructura de la Biblioteca*. https://www.atlantico.gov.co/index.php/infraestructura-biblioteca
 - Ley 889 de 2004. (2004, 7 de julio). Congreso de la República de Colombia. https://www.atlantico.gov.co/images/stories/biblioteca/leybiblio.pdf
 - Ordenanza N.º 12 de 1921. Asamblea del Atlántico. https://www.atlantico.gov.co/images/stories/biblioteca/ordenanza.pdf
-- Decreto N.º 00924 de 1998. Gobernación del Atlántico. https://www.atlantico.gov.co/images/stories/biblioteca/decretobiblio.pdf
 - Poemas del Alma. (s. f.). *Meira Delmar: poemas y biografía*. https://www.poemas-del-alma.com/meira-delmar.htm
 - Wikipedia. (s. f.-a). *Biblioteca Pública Departamental Meira Delmar*. https://es.wikipedia.org/wiki/Biblioteca_P%C3%BAblica_Departamental_Meira_Delmar
 - Wikipedia. (s. f.-b). *Meira Delmar*. https://en.wikipedia.org/wiki/Meira_Delmar
-- El Tiempo. (2022). *Meira Delmar: cien años de una voz poética del Caribe*. https://www.eltiempo.com/cultura/musica-y-libros/meira-delmar-cien-anos-de-una-voz-poetica-del-caribe-723749

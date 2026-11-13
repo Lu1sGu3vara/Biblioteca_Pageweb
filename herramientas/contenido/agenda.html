@@ -42,7 +42,12 @@
 
         <p class="agenda-count" id="agendaCount" aria-live="polite"></p>
         <div class="agenda" id="agendaList">
-          <p class="news__empty">Cargando agenda…</p>
+          <ul class="agenda-list skeleton-group" aria-hidden="true">
+            <li class="agenda-item skeleton"><span class="sk sk--date"></span><div><span class="sk sk--tag"></span><span class="sk sk--title"></span><span class="sk sk--short"></span></div></li>
+            <li class="agenda-item skeleton"><span class="sk sk--date"></span><div><span class="sk sk--tag"></span><span class="sk sk--title"></span><span class="sk sk--short"></span></div></li>
+            <li class="agenda-item skeleton"><span class="sk sk--date"></span><div><span class="sk sk--tag"></span><span class="sk sk--title"></span><span class="sk sk--short"></span></div></li>
+          </ul>
+          <p class="sr-only">Cargando la agenda.</p>
         </div>
         <noscript><p class="note">Activa JavaScript para ver la agenda.</p></noscript>
 

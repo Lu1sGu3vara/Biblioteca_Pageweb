@@ -1,24 +1,27 @@
 # Plan de Aplicación – Portal Web de la Biblioteca Meira Delmar
 
-> Documento base para el informe tipo tesis. Cada sección indica a qué capítulo del documento Word corresponde (📘).
+> Documento base para el informe tipo tesis. Cada sección indica a qué capítulo de la tesis corresponde.
 
 ---
 
-## 1. Identificación del proyecto  📘 *Portada / Introducción*
+## 1. Identificación del proyecto
 
+> Capítulo de la tesis: Portada / Introducción
 | Campo | Detalle |
 |---|---|
 | **Nombre del proyecto** | Diseño y desarrollo del portal web de la Biblioteca Meira Delmar |
-| **Entidad beneficiaria** | Biblioteca Meira Delmar – Barranquilla, Atlántico |
-| **Entidad vinculada** | Gobernación del Atlántico / Alcaldía de Barranquilla *(confirmar cuál es la dueña del dominio y del hosting — ver §11)* |
+| **Entidad beneficiaria** | Biblioteca Pública Departamental Meira Delmar – Barranquilla, Atlántico |
+| **Entidad vinculada** | Gobernación del Atlántico |
+| **Línea de diseño** | Estilo visual del portal de la Gobernación con identidad propia de biblioteca |
 | **Tipo de proyecto** | Desarrollo de software – sitio web institucional informativo con formularios |
 | **Fecha de inicio** | 12 de noviembre de 2026 |
 | **Metodología** | Ágil incremental (Scrum simplificado, sprints de 1 semana) |
 
 ---
 
-## 2. Planteamiento del problema  📘 *Capítulo 1*
+## 2. Planteamiento del problema
 
+> Capítulo de la tesis: Capítulo 1
 La Biblioteca Meira Delmar no cuenta con un portal propio, claro y organizado que permita a los ciudadanos:
 
 - Conocer su **historia** y su valor cultural para la ciudad.
@@ -32,8 +35,9 @@ Actualmente la información, si existe, está dispersa dentro del sitio general 
 
 ---
 
-## 3. Objetivos  📘 *Capítulo 1*
+## 3. Objetivos
 
+> Capítulo de la tesis: Capítulo 1
 ### Objetivo general
 Diseñar y desarrollar un portal web institucional para la Biblioteca Meira Delmar, accesible, responsivo y alineado con la identidad visual de la Gobernación, que permita a los visitantes conocer la historia, servicios y catálogo de la biblioteca y comunicarse con ella.
 
@@ -48,8 +52,9 @@ Diseñar y desarrollar un portal web institucional para la Biblioteca Meira Delm
 
 ---
 
-## 4. Justificación  📘 *Capítulo 1*
+## 4. Justificación
 
+> Capítulo de la tesis: Capítulo 1
 - **Social/cultural:** acerca el patrimonio literario de Meira Delmar y la biblioteca a la ciudadanía.
 - **Institucional:** cumple lineamientos de Gobierno Digital y transparencia (Ley 1712 de 2014).
 - **Tecnológica:** un sitio moderno, ligero y accesible mejora la experiencia de usuario y el posicionamiento en buscadores.
@@ -57,8 +62,9 @@ Diseñar y desarrollar un portal web institucional para la Biblioteca Meira Delm
 
 ---
 
-## 5. Alcance  📘 *Capítulo 1*
+## 5. Alcance
 
+> Capítulo de la tesis: Capítulo 1
 ### Incluye
 - Portal con página principal y sub-páginas (ver §7).
 - Formulario de contacto (y opcionalmente PQRS / reserva de espacios).
@@ -73,8 +79,9 @@ Diseñar y desarrollar un portal web institucional para la Biblioteca Meira Delm
 
 ---
 
-## 6. Requerimientos  📘 *Capítulo 3 – Análisis*
+## 6. Requerimientos
 
+> Capítulo de la tesis: Capítulo 3 – Análisis
 ### 6.1 Funcionales (RF)
 
 | ID | Requerimiento | Prioridad |
@@ -108,8 +115,9 @@ Diseñar y desarrollar un portal web institucional para la Biblioteca Meira Delm
 
 ---
 
-## 7. Arquitectura de información (mapa del sitio)  📘 *Capítulo 4 – Diseño*
+## 7. Arquitectura de información (mapa del sitio)
 
+> Capítulo de la tesis: Capítulo 4 – Diseño
 ```
 Inicio
 ├── La Biblioteca
@@ -138,8 +146,9 @@ Portal de la Biblioteca  ──►  botón "Volver a Gobernación" en encabezado
 
 ---
 
-## 8. Lineamientos de diseño (UI/UX)  📘 *Capítulo 4 – Diseño*
+## 8. Lineamientos de diseño (UI/UX)
 
+> Capítulo de la tesis: Capítulo 4 – Diseño
 - **Concepto visual:** "entrar a una biblioteca": tonos papel/crema, madera suave y un color institucional como acento. Mucho espacio en blanco.
 - **Paleta propuesta (a ajustar con el manual de marca):**
   - Fondo papel `#FAF7F2` · Texto tinta `#2B2B2B` · Acento institucional (azul/rojo de la Gobernación) · Madera `#8B6B4A` en detalles.
@@ -150,8 +159,9 @@ Portal de la Biblioteca  ──►  botón "Volver a Gobernación" en encabezado
 
 ---
 
-## 9. Tecnologías propuestas  📘 *Capítulo 4 – Diseño / Capítulo 5 – Desarrollo*
+## 9. Tecnologías propuestas
 
+> Capítulo de la tesis: Capítulo 4 – Diseño / Capítulo 5 – Desarrollo
 | Capa | Tecnología | Justificación |
 |---|---|---|
 | Estructura | **HTML5** semántico | Accesibilidad y SEO |
@@ -169,8 +179,9 @@ Portal de la Biblioteca  ──►  botón "Volver a Gobernación" en encabezado
 
 ---
 
-## 10. Metodología y cronograma  📘 *Capítulo 2 – Metodología*
+## 10. Metodología y cronograma
 
+> Capítulo de la tesis: Capítulo 2 – Metodología
 Metodología ágil incremental: cada sprint entrega algo funcional y revisable por la entidad.
 
 | Fase / Sprint | Semana | Actividades | Entregable |
@@ -187,20 +198,21 @@ Metodología ágil incremental: cada sprint entrega algo funcional y revisable p
 
 ---
 
-## 11. Riesgos y supuestos  📘 *Capítulo 2*
+## 11. Riesgos y supuestos
 
+> Capítulo de la tesis: Capítulo 2
 | Riesgo | Mitigación |
 |---|---|
 | Falta de contenido oficial (textos, fotos) | Usar contenido provisional y pedirlo desde la semana 1 |
 | No se obtiene el manual de marca | Extraer colores/logo del sitio oficial y validarlo con la entidad |
-| Dudas sobre la entidad dueña (Alcaldía vs. Gobernación) | Confirmarlo en la primera reunión: define dominio, hosting y marca |
 | Sin acceso al servidor de la entidad | Desplegar demo en GitHub Pages/Netlify y entregar el paquete listo |
 | Catálogo real no disponible | Iniciar con muestra en JSON; dejar la estructura lista para conectar una API |
 
 ---
 
-## 12. Marco normativo  📘 *Capítulo 2 – Marco legal*
+## 12. Marco normativo
 
+> Capítulo de la tesis: Capítulo 2 – Marco legal
 - **Ley 1712 de 2014** – Transparencia y acceso a la información pública.
 - **Ley 1581 de 2012** y Decreto 1377 de 2013 – Protección de datos personales (formularios).
 - **Resolución 1519 de 2020 (MinTIC)** – Estándares de publicación, accesibilidad web (WCAG 2.1 AA) y requisitos de sitios web de entidades públicas.
@@ -216,7 +228,7 @@ Metodología ágil incremental: cada sprint entrega algo funcional y revisable p
 3. **Capítulo 2 – Marco teórico, legal y metodología:** conceptos (UX, accesibilidad, diseño responsivo), normativa (§12), metodología y cronograma (§10), riesgos (§11)
 4. **Capítulo 3 – Análisis:** requerimientos (§6), casos de uso, análisis del sitio actual
 5. **Capítulo 4 – Diseño:** arquitectura de información (§7), wireframes/mockups, guía de estilos (§8), tecnologías (§9)
-6. **Capítulo 5 – Desarrollo:** lo que se va registrando en la bitácora (`02_BITACORA.md`) con capturas
+6. **Capítulo 5 – Desarrollo:** lo que se va registrando en las bitácoras (`Bitacora Entrada 01` a `06`) con capturas
 7. **Capítulo 6 – Pruebas y resultados**
 8. **Capítulo 7 – Implementación e integración con la Gobernación**
 9. Conclusiones, recomendaciones, bibliografía (formato APA), anexos (código, manuales)

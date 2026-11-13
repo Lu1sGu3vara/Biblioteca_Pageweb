@@ -1,7 +1,7 @@
 # Entrada 03 — 12/11/2026 · Fases 1, 4 y 5: Investigación, sub-páginas, noticias y mejora visual
 
 > Para pegar en la Bitácora (Word). Sirve para el **Capítulo 2 (contexto institucional)**, el **Capítulo 3 (Análisis)**, el **Capítulo 4 (Diseño)** y el **Capítulo 5 (Desarrollo)**.
-> La investigación completa, con referencias en APA, está en `docs/investigacion_meira_delmar_y_biblioteca.md`.
+> La investigación completa, con referencias en APA, está en `docs/Investigacion Meira Delmar y Biblioteca.docx`.
 
 ---
 

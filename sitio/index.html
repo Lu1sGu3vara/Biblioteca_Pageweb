@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblioteca Meira Delmar | Inicio</title>
   <meta name="description" content="Portal oficial de la Biblioteca Meira Delmar: historia, servicios, catálogo, agenda cultural y contacto.">
-  <link rel="icon" href="img/marca/favicon.ico" sizes="any">
-  <link rel="icon" href="img/marca/favicon-32.png" type="image/png" sizes="32x32">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Biblioteca Pública Departamental Meira Delmar">
+  <meta property="og:title" content="Biblioteca Meira Delmar | Inicio">
+  <meta property="og:description" content="Portal oficial de la Biblioteca Meira Delmar: historia, servicios, catálogo, agenda cultural y contacto.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
   <meta name="theme-color" content="#E40E20">
 
@@ -14,6 +20,34 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="img/fachada-960.webp 960w, img/fachada.webp 1600w" imagesizes="100vw" fetchpriority="high">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Library",
+    "name": "Biblioteca Pública Departamental Meira Delmar",
+    "alternateName": "Biblioteca Departamental del Atlántico",
+    "foundingDate": "1922-10-01",
+    "description": "Biblioteca pública de la Gobernación del Atlántico, creada por la Ordenanza 12 de 1921 y declarada Patrimonio Cultural y Educativo de la Nación por la Ley 889 de 2004.",
+    "parentOrganization": { "@type": "GovernmentOrganization", "name": "Gobernación del Atlántico", "url": "https://www.atlantico.gov.co" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 38 N.º 38B-21",
+      "addressLocality": "Barranquilla",
+      "addressRegion": "Atlántico",
+      "addressCountry": "CO"
+    },
+    "telephone": "+57 605 330 7000",
+    "email": "atencionalciudadano@atlantico.gov.co",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00", "closes": "16:00"
+    }],
+    "isAccessibleForFree": true,
+    "image": "img/fachada.jpg"
+  }
+  </script>
 </head>
 <body class="page-home">
   <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
@@ -27,9 +61,12 @@
           <img src="img/logo-gov-co.png" alt="GOV.CO" width="112" height="24">
         </a>
         <span class="govbar__sep" aria-hidden="true"></span>
-        <span class="govbar__entity">Gobernación del Atlántico</span>
+        <span class="govbar__entity notranslate">Gobernación del Atlántico</span>
       </div>
-      <a href="https://www.atlantico.gov.co" class="govbar__back"><span aria-hidden="true">←</span> Volver al portal de la Gobernación</a>
+      <div class="govbar__tools">
+        <a href="https://www.atlantico.gov.co" class="govbar__back"><span aria-hidden="true">←</span> <span class="govbar__back-long">Volver al portal de la </span>Gobernación</a>
+        <div class="lang notranslate" data-lang-switcher></div>
+      </div>
     </div>
   </div>
 
@@ -38,7 +75,7 @@
       <a href="index.html" class="brand" aria-label="Biblioteca Meira Delmar, ir al inicio">
         <img class="brand__logo" src="img/marca/logo-simbolo.png" alt="" width="142" height="99">
         <span class="brand__text">
-          <span class="brand__name">Biblioteca Meira Delmar</span>
+          <span class="brand__name notranslate">Biblioteca Meira Delmar</span>
           <span class="brand__sub">Gobernación del Atlántico</span>
         </span>
       </a>
@@ -68,7 +105,7 @@
     <section class="hero-x" aria-labelledby="hero-title">
       <div class="hero-x__bg" id="heroBg" aria-hidden="true">
         <!-- Foto oficial del portal de la Gobernación (1600×1066). PENDIENTE: versión en alta resolución con autorización de uso -->
-        <img src="img/fachada.jpg" alt="" fetchpriority="high">
+        <picture><source type="image/webp" srcset="img/fachada-960.webp 960w, img/fachada.webp 1600w" sizes="100vw"><img src="img/fachada.jpg" srcset="img/fachada-960.jpg 960w, img/fachada.jpg 1600w" sizes="100vw" alt="" fetchpriority="high"></picture>
       </div>
       <canvas class="hero-x__dust" id="heroDust" aria-hidden="true"></canvas>
       <div class="hero-x__deco" aria-hidden="true"></div>
@@ -77,8 +114,13 @@
         <div class="hero-x__text">
           <p class="hero-x__eyebrow reveal"><span class="deco-diamond" aria-hidden="true"></span>Biblioteca Pública Departamental · Desde 1922</p>
           <h1 id="hero-title" class="hero-x__title reveal">
-            Un lugar para
-            <span class="rotator" aria-hidden="true"><span class="rotator__word" id="rotator">leer</span></span>
+            <span class="hero-x__line">Un lugar para</span>
+            <span class="rotator" id="rotator" aria-hidden="true">
+              <span class="rotator__word is-active">leer</span>
+              <span class="rotator__word">aprender</span>
+              <span class="rotator__word">imaginar</span>
+              <span class="rotator__word">encontrarnos</span>
+            </span>
             <span class="sr-only">leer, aprender, imaginar y encontrarnos</span>
           </h1>
           <p class="hero-x__lead reveal">
@@ -120,7 +162,7 @@
       </div>
     </section>
 
-    <!-- Accesos rápidos: navegación guiada -->
+    <!-- Accesos rápidos en grilla Bento: cada bloque tiene tamaño según su importancia -->
     <section class="section" aria-labelledby="quick-title">
       <div class="container">
         <header class="section__head reveal">
@@ -128,56 +170,60 @@
           <h2 id="quick-title" class="section__title">¿Qué quieres hacer hoy?</h2>
         </header>
 
-        <ul class="cards" role="list">
-          <li class="card reveal">
-            <a href="historia.html" class="card__link">
-              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></span>
-              <h3 class="card__title">Conocer nuestra historia</h3>
-              <p class="card__text">Cien años de biblioteca y el legado de la poeta Meira Delmar.</p>
-              <span class="card__more">Leer historia <span aria-hidden="true">→</span></span>
-            </a>
-          </li>
-          <li class="card reveal">
-            <a href="catalogo.html" class="card__link">
-              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg></span>
-              <h3 class="card__title">Buscar un libro</h3>
-              <p class="card__text">Consulta el catálogo en línea por título, autor o tema.</p>
-              <span class="card__more">Ir al catálogo <span aria-hidden="true">→</span></span>
-            </a>
-          </li>
-          <li class="card reveal">
-            <a href="servicios.html" class="card__link">
-              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
-              <h3 class="card__title">Ver los servicios</h3>
-              <p class="card__text">Salas de lectura, préstamo, sala infantil, internet y talleres.</p>
-              <span class="card__more">Ver servicios <span aria-hidden="true">→</span></span>
-            </a>
-          </li>
-          <li class="card reveal">
-            <a href="#noticias" class="card__link">
-              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9h18M7 3v4M17 3v4M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg></span>
-              <h3 class="card__title">Asistir a un evento</h3>
-              <p class="card__text">Clubes de lectura, talleres, cine y actividades culturales.</p>
-              <span class="card__more">Ver esta semana <span aria-hidden="true">↓</span></span>
-            </a>
-          </li>
-          <li class="card reveal">
-            <a href="visitanos.html" class="card__link">
-              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
-              <h3 class="card__title">Planear mi visita</h3>
-              <p class="card__text">Horarios, ubicación y cómo llegar al Centro Histórico.</p>
-              <span class="card__more">Cómo llegar <span aria-hidden="true">→</span></span>
-            </a>
-          </li>
-          <li class="card reveal">
-            <a href="contacto.html" class="card__link">
-              <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM3 7l9 6 9-6"/></svg></span>
-              <h3 class="card__title">Escribirnos</h3>
-              <p class="card__text">Envíanos tus preguntas, sugerencias o solicitudes.</p>
-              <span class="card__more">Contactar <span aria-hidden="true">→</span></span>
-            </a>
-          </li>
-        </ul>
+        <div class="bento">
+          <a href="historia.html" class="tile tile--history reveal">
+            <picture><source type="image/webp" srcset="img/fachada-960.webp 960w, img/fachada.webp 1600w" sizes="(max-width: 960px) 100vw, 560px"><img class="tile__bg" src="img/fachada.jpg" srcset="img/fachada-960.jpg 960w, img/fachada.jpg 1600w" sizes="(max-width: 960px) 100vw, 560px" alt="" loading="lazy" width="1600" height="1066"></picture>
+            <span class="tile__year" aria-hidden="true">1922</span>
+            <span class="tile__kicker">La Biblioteca</span>
+            <h3 class="tile__title">Cien años de historia y una poeta</h3>
+            <p class="tile__text">Cómo nació la biblioteca y por qué lleva el nombre de Meira Delmar.</p>
+            <span class="tile__action">Recorrer la historia <span aria-hidden="true">→</span></span>
+          </a>
+
+          <div class="tile tile--search reveal">
+            <span class="tile__kicker">Catálogo en línea</span>
+            <h3 class="tile__title">Buscar un libro</h3>
+            <form class="tile-search" action="https://biblioteca.atlantico.gov.co:8001/cgi-bin/koha/opac-search.pl" method="get" role="search" target="_blank">
+              <label for="bq" class="sr-only">Título, autor o tema</label>
+              <input id="bq" name="q" type="search" placeholder="Título, autor o tema" required>
+              <button type="submit" class="btn btn--primary">Buscar en el catálogo</button>
+            </form>
+            <a href="catalogo.html" class="tile__action">Ver colecciones digitales <span aria-hidden="true">→</span></a>
+          </div>
+
+          <a href="servicios.html" class="tile tile--small reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+            <h3 class="tile__title">Servicios</h3>
+            <p class="tile__text">Préstamo, sala infantil, internet y aula braille.</p>
+            <span class="tile__action">Ver los 10 servicios <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="agenda.html" class="tile tile--small tile--accent reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9h18M7 3v4M17 3v4M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg></span>
+            <h3 class="tile__title">Agenda</h3>
+            <p class="tile__text" id="tileAgenda">Talleres, clubes de lectura y cine.</p>
+            <span class="tile__action">Ver actividades <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="visitanos.html" class="tile tile--wide reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
+            <div>
+              <h3 class="tile__title">Visítanos</h3>
+              <p class="tile__text">Calle 38 N.º 38B-21, frente al Parque Centenario.</p>
+              <p class="status tile__status" data-open-status></p>
+            </div>
+            <span class="tile__action">Planear mi visita <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="contacto.html" class="tile tile--wide reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM3 7l9 6 9-6"/></svg></span>
+            <div>
+              <h3 class="tile__title">Contacto</h3>
+              <p class="tile__text">Consultas, visitas guiadas para colegios y donación de libros.</p>
+            </div>
+            <span class="tile__action">Escribir a la biblioteca <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -203,7 +249,12 @@
         </div>
 
         <div class="news" id="newsList" aria-live="polite">
-          <p class="news__empty">Cargando actividades…</p>
+          <div class="skeleton-group" aria-hidden="true">
+            <div class="news-card news-card--featured skeleton"><div class="news-card__media"></div><div class="news-card__body"><span class="sk sk--tag"></span><span class="sk sk--title"></span><span class="sk"></span><span class="sk sk--short"></span></div></div>
+            <div class="news-card skeleton"><div class="news-card__media"></div><div class="news-card__body"><span class="sk sk--tag"></span><span class="sk sk--title"></span><span class="sk sk--short"></span></div></div>
+            <div class="news-card skeleton"><div class="news-card__media"></div><div class="news-card__body"><span class="sk sk--tag"></span><span class="sk sk--title"></span><span class="sk sk--short"></span></div></div>
+          </div>
+          <p class="sr-only">Cargando las actividades de la semana.</p>
         </div>
         <noscript><p class="note">Activa JavaScript para ver las actividades de la semana, o consulta la <a href="agenda.html">agenda completa</a>.</p></noscript>
       </div>
@@ -383,12 +434,13 @@
             <img src="img/logo-pais-co.png" alt="Colombia" width="26" height="25">
           </a>
           <span class="govbar__sep" aria-hidden="true"></span>
-          <span class="govbar__entity">Gobernación del Atlántico</span>
+          <span class="govbar__entity notranslate">Gobernación del Atlántico</span>
         </div>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js" defer></script>
+  <script src="js/idiomas.js" defer></script>
 </body>
 </html>

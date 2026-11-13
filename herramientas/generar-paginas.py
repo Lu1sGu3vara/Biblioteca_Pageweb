@@ -7,7 +7,7 @@ herramientas/contenido/<pagina>.html. Así todas las páginas comparten exactame
 la misma barra gov.co, el mismo menú y el mismo pie institucional.
 
 Uso (desde la carpeta del proyecto):
-    python herramientas/generar_paginas.py
+    python herramientas/generar-paginas.py
 """
 from pathlib import Path
 import re
@@ -39,6 +39,11 @@ PAGINAS = {
         "Política de tratamiento de datos personales del portal de la Biblioteca Meira Delmar (Ley 1581 de 2012).",
         None,
     ),
+    "404.html": (
+        "Página no encontrada",
+        "La página que buscas no existe o cambió de lugar. Vuelve al inicio del portal de la Biblioteca Meira Delmar.",
+        None,
+    ),
     "accesibilidad.html": (
         "Accesibilidad",
         "Declaración de accesibilidad del portal de la Biblioteca Meira Delmar (WCAG 2.1 nivel AA, Resolución 1519 de 2020).",
@@ -57,6 +62,8 @@ def partes_plantilla():
 def preparar_cabecera(cabecera, titulo, descripcion, activo):
     cabecera = re.sub(r"<title>.*?</title>", f"<title>{titulo} | Biblioteca Meira Delmar</title>", cabecera)
     cabecera = re.sub(r'(<meta name="description" content=")[^"]*(")', rf"\g<1>{descripcion}\g<2>", cabecera)
+    cabecera = re.sub(r'(<meta property="og:title" content=")[^"]*(")', rf"\g<1>{titulo} | Biblioteca Meira Delmar\g<2>", cabecera)
+    cabecera = re.sub(r'(<meta property="og:description" content=")[^"]*(")', rf"\g<1>{descripcion}\g<2>", cabecera)
     # Quitar el enlace activo de la plantilla
     cabecera = cabecera.replace(' is-active" aria-current="page"', '"')
     cabecera = cabecera.replace('class="nav__link nav__link--cta"', 'class="nav__link nav__link--cta"')
