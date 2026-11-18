@@ -12,6 +12,7 @@
   <meta property="og:description" content="Declaración de accesibilidad del portal de la Biblioteca Meira Delmar (WCAG 2.1 nivel AA, Resolución 1519 de 2020).">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="color-scheme" content="light">
+  <script>/* Aplica las preferencias de accesibilidad guardadas antes de dibujar la página */try{var a=JSON.parse(localStorage.getItem('bmd-accesibilidad')||'{}'),h=document.documentElement,f=[];if(a.texto)h.style.setProperty('--a11y-escala',1+a.texto*.1);if(a.espaciado){h.style.setProperty('--a11y-espaciado',a.espaciado);h.classList.add('a11y-espaciado')}if(a.invertir){f.push('invert(1) hue-rotate(180deg)');h.classList.add('a11y-invertir')}if(a.grises)f.push('grayscale(1)');if(f.length)h.style.setProperty('--a11y-filtro',f.join(' '));if(a.subrayar)h.classList.add('a11y-subrayar');if(a.cursor)h.classList.add('a11y-cursor')}catch(e){}</script>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
   <meta name="theme-color" content="#E40E20">
@@ -102,6 +103,21 @@
             <li>Las animaciones se desactivan si tienes activada la opción "reducir movimiento" en tu equipo.</li>
           </ul>
 
+          <h2>Opciones de accesibilidad</h2>
+          <p>En todas las páginas, el botón azul con el símbolo de accesibilidad, a la izquierda (abajo en el celular), abre estas herramientas. Tus preferencias se guardan en tu navegador y se aplican en todo el portal.</p>
+          <ul>
+            <li><strong>Aumentar o disminuir el tamaño del texto</strong>, del 80 % al 150 %.</li>
+            <li><strong>Aumentar o disminuir el espaciado</strong> entre letras, palabras y líneas.</li>
+            <li><strong>Invertir colores</strong>: fondo oscuro y texto claro; las fotografías conservan sus colores.</li>
+            <li><strong>Tonos grises</strong>: quita los colores de toda la página.</li>
+            <li><strong>Subrayar enlaces</strong> para distinguirlos sin depender del color.</li>
+            <li><strong>Cursor grande</strong>.</li>
+            <li><strong>Guía de lectura</strong>: una franja que sigue al puntero y oscurece el resto de la página.</li>
+            <li><strong>Texto a voz</strong>: lee en voz alta el texto que señalas con el mouse, el que enfocas con el teclado o el que seleccionas.</li>
+            <li><strong>Voz a texto</strong>: dicta en los campos del formulario o navega con órdenes como «ir a servicios», «bajar» o «buscar Meira Delmar». Disponible en Chrome y Edge.</li>
+          </ul>
+          <p>El botón con la flecha circular restablece todas las opciones.</p>
+
           <h2>En la biblioteca</h2>
           <p>Además del portal, la biblioteca cuenta con un aula tiflotecnológica para personas con discapacidad visual, con más de 400 libros en braille, software lector de pantalla e impresora braille.</p>
 
@@ -112,6 +128,12 @@
     </section>
 
   </main>
+
+  <div class="a11y" data-a11y>
+    <button type="button" class="a11y__btn" aria-expanded="false" aria-controls="a11yPanel" aria-label="Opciones de accesibilidad" title="Opciones de accesibilidad">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="4" r="1.8" fill="currentColor" stroke="none"/><path d="M10.5 7.5v5.5h5.5l2.8 5.5 1.7-.8M10.5 10h5"/><path d="M8 10.8A5.2 5.2 0 1 0 15 17.6"/></svg>
+    </button>
+  </div>
 
   <a href="#contenido" class="to-top" id="toTop" aria-label="Volver arriba">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -163,5 +185,6 @@
 
   <script src="js/main.js" defer></script>
   <script src="js/idiomas.js" defer></script>
+  <script src="js/accesibilidad.js" defer></script>
 </body>
 </html>
