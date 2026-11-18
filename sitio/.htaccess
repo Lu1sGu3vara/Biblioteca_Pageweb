@@ -44,6 +44,6 @@ Options -Indexes
 </IfModule>
 
 # Protege archivos que no deben verse desde el navegador
-<FilesMatch "^\.|\.(md|py|log)$">
+<FilesMatch "^\.|\.(md|py|log)$|^config-correo">
   Require all denied
 </FilesMatch>

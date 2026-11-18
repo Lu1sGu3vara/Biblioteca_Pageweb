@@ -15,3 +15,6 @@ desktop.ini
 
 # Python
 __pycache__/
+
+# Clave del correo del formulario (nunca subir a GitHub)
+sitio/config-correo.php

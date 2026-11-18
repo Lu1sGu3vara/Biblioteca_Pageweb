@@ -7,13 +7,20 @@
  * - Evita inyección de cabeceras de correo.
  * - Responde en JSON si la petición viene de JavaScript; si no, redirige con un mensaje.
  *
- * CONFIGURACIÓN: cambie DESTINO por el correo oficial que recibirá los mensajes.
+ * CONFIGURACIÓN: copie config-correo.ejemplo.php como config-correo.php y complete los datos.
+ * Sin ese archivo se usan los valores por defecto y la función mail() del servidor.
  */
 
 declare(strict_types=1);
 
-const DESTINO        = 'atencionalciudadano@atlantico.gov.co'; // PENDIENTE: correo propio de la biblioteca
-const REMITENTE      = 'no-responder@atlantico.gov.co';         // Debe pertenecer al dominio del servidor
+date_default_timezone_set('America/Bogota');
+
+$CONFIG =array_replace_recursive([
+    'destino'   => 'atencionalciudadano@atlantico.gov.co', // PENDIENTE: correo propio de la biblioteca
+    'remitente' => 'no-responder@atlantico.gov.co',        // Debe pertenecer al dominio del servidor
+    'smtp'      => ['host' => ''],                          // Vacío: se usa mail() del servidor
+], is_file(__DIR__ . '/config-correo.php') ? (array) require __DIR__ . '/config-correo.php' : []);
+
 const MAX_POR_HORA   = 5;                                       // Envíos máximos por IP en una hora
 const SEGUNDOS_MIN   = 3;                                       // Un humano tarda más de 3 s en llenar el formulario
 
@@ -41,6 +48,112 @@ function responder(bool $ok, string $mensaje, array $errores = [], int $codigo =
     exit;
 }
 
+// Respaldo si el servidor no tiene la extensión mbstring (necesaria para recortar textos con tildes)
+if (!function_exists('mb_substr')) {
+    function mb_substr(string $texto, int $inicio, ?int $largo = null): string
+    {
+        if (preg_match_all('/./us', $texto, $m) === false) {
+            return substr($texto, $inicio, $largo);
+        }
+        return implode('', array_slice($m[0], $inicio, $largo));
+    }
+}
+if (!function_exists('mb_strlen')) {
+    function mb_strlen(string $texto): int
+    {
+        $n = preg_match_all('/./us', $texto);
+        return $n === false ? strlen($texto) : $n;
+    }
+}
+
+/**
+ * Envía el correo por SMTP autenticado (Gmail, Office 365 o el servidor de correo de la entidad).
+ * Usa STARTTLS en el puerto 587 o TLS directo en el 465. Los errores se registran en el log del
+ * servidor, nunca se muestran al visitante.
+ */
+function enviarPorSmtp(array $cfg, string $asunto, string $cuerpo, string $cabeceras): bool
+{
+    $s = $cfg['smtp'];
+    $tlsDirecto = ($s['seguridad'] ?? 'tls') === 'ssl';
+    $conexion = @stream_socket_client(
+        ($tlsDirecto ? 'ssl://' : 'tcp://') . $s['host'] . ':' . (int) ($s['puerto'] ?? 587),
+        $errno, $errstr, 15
+    );
+    if (!$conexion) {
+        error_log("SMTP: no se pudo conectar ({$errstr})");
+        return false;
+    }
+    stream_set_timeout($conexion, 15);
+
+    $leer = function () use ($conexion): string {
+        $respuesta = '';
+        while (($linea = fgets($conexion, 515)) !== false) {
+            $respuesta .= $linea;
+            if (isset($linea[3]) && $linea[3] === ' ') break;   // última línea de una respuesta multilínea
+        }
+        return $respuesta;
+    };
+    $orden = function (string $comando, array $esperados) use ($conexion, $leer): bool {
+        if ($comando !== '') fwrite($conexion, $comando . "\r\n");
+        $respuesta = $leer();
+        if (!in_array((int) substr($respuesta, 0, 3), $esperados, true)) {
+            $visible = strncmp($comando, 'AUTH', 4) === 0 || strlen($comando) > 60 ? '(credenciales)' : $comando;
+            error_log("SMTP: '{$visible}' respondió " . trim($respuesta));
+            return false;
+        }
+        return true;
+    };
+
+    $dominio = $_SERVER['SERVER_NAME'] ?? 'localhost';
+    $ok = $orden('', [220]) && $orden("EHLO {$dominio}", [250]);
+    if ($ok && !$tlsDirecto && ($s['seguridad'] ?? 'tls') !== 'ninguna') {
+        $ok = $orden('STARTTLS', [220])
+            && stream_socket_enable_crypto($conexion, true, STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT)
+            && $orden("EHLO {$dominio}", [250]);
+    }
+    if ($ok && ($s['usuario'] ?? '') !== '') {
+        $ok = $orden('AUTH LOGIN', [334])
+            && $orden(base64_encode($s['usuario']), [334])
+            && $orden(base64_encode((string) $s['clave']), [235]);
+    }
+    $ok = $ok
+        && $orden("MAIL FROM:<{$cfg['remitente']}>", [250])
+        && $orden("RCPT TO:<{$cfg['destino']}>", [250, 251])
+        && $orden('DATA', [354]);
+    if ($ok) {
+        $mensaje = "Date: " . date(DATE_RFC2822) . "\r\n"
+            . "To: <{$cfg['destino']}>\r\n"
+            . "Subject: {$asunto}\r\n"
+            . "Message-ID: <" . bin2hex(random_bytes(12)) . "@{$dominio}>\r\n"
+            . $cabeceras . "\r\n\r\n"
+            . str_replace("\n.", "\n..", str_replace(["\r\n", "\n"], ["\n", "\r\n"], $cuerpo));
+        $ok = $orden($mensaje . "\r\n.", [250]);
+    }
+    fwrite($conexion, "QUIT\r\n");
+    fclose($conexion);
+    return $ok;
+}
+
+/** Lee un campo del formulario solo si es texto (un bot puede enviar listas, p. ej. nombre[]=x). */
+function campo(string $nombre): string
+{
+    $valor = $_POST[$nombre] ?? '';
+    if (!is_string($valor)) {
+        return '';
+    }
+    // Los navegadores envían UTF-8; si llega otra codificación (Windows-1252) se convierte
+    if (!preg_match('//u', $valor)) {
+        if (function_exists('mb_convert_encoding')) {
+            $valor = mb_convert_encoding($valor, 'UTF-8', 'Windows-1252');
+        } elseif (function_exists('iconv')) {
+            $valor = (string) iconv('Windows-1252', 'UTF-8//IGNORE', $valor);
+        } else {
+            $valor = (string) preg_replace('/[\x80-\xFF]/', '', $valor);
+        }
+    }
+    return $valor;
+}
+
 function limpiar(string $valor, int $max): string
 {
     $valor = trim(strip_tags($valor));
@@ -53,10 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // 1. Anti-spam: honeypot y tiempo de llenado
-if (!empty($_POST['sitio_web'])) {
+if (campo('sitio_web') !== '') {
     responder(true, 'Gracias, recibimos tu mensaje.');            // Se finge éxito ante bots
 }
-$inicio = (int) ($_POST['inicio'] ?? 0);
+$inicio = (int) campo('inicio');
 if ($inicio > 0 && (time() - intdiv($inicio, 1000)) < SEGUNDOS_MIN) {
     responder(false, 'Por favor revisa el formulario e inténtalo de nuevo.', [], 429);
 }
@@ -71,14 +184,14 @@ if (count($marcas) >= MAX_POR_HORA) {
 }
 
 // 3. Validación de campos
-$nombre   = limpiar($_POST['nombre'] ?? '', 100);
-$correo   = limpiar($_POST['correo'] ?? '', 120);
-$telefono = limpiar($_POST['telefono'] ?? '', 20);
-$tipo     = $_POST['tipo'] ?? '';
-$mensaje  = mb_substr(trim(strip_tags($_POST['mensaje'] ?? '')), 0, 1000);
-$acepto   = ($_POST['acepto'] ?? '') === 'si';
-$institucion = limpiar($_POST['institucion'] ?? '', 120);
-$personas    = (int) ($_POST['personas'] ?? 0);
+$nombre   = limpiar(campo('nombre'), 100);
+$correo   = limpiar(campo('correo'), 120);
+$telefono = limpiar(campo('telefono'), 20);
+$tipo     = campo('tipo');
+$mensaje  = mb_substr(trim(strip_tags(campo('mensaje'))), 0, 1000);
+$acepto   = campo('acepto') === 'si';
+$institucion = limpiar(campo('institucion'), 120);
+$personas    = (int) campo('personas');
 
 $errores = [];
 if (mb_strlen($nombre) < 3)                              $errores['nombre']   = 'Escribe tu nombre completo.';
@@ -108,11 +221,18 @@ $cuerpo .= "Fecha:     " . date('Y-m-d H:i') . "\n";
 $cuerpo .= "Autorizó tratamiento de datos (Ley 1581): Sí\n";
 $cuerpo .= str_repeat('-', 60) . "\n\n" . $mensaje . "\n";
 
-$cabeceras  = "From: Portal Biblioteca Meira Delmar <" . REMITENTE . ">\r\n";
+$cabeceras  = "From: Portal Biblioteca Meira Delmar <{$CONFIG['remitente']}>\r\n";
 $cabeceras .= "Reply-To: {$correo}\r\n";
 $cabeceras .= "MIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\n";
+// Base64: las tildes y la ñ llegan intactas aunque algún servidor intermedio no acepte texto de 8 bits
+$cabeceras .= "Content-Transfer-Encoding: base64";
+$cuerpoCodificado = chunk_split(base64_encode($cuerpo));
 
-if (!mail(DESTINO, $asunto, $cuerpo, $cabeceras)) {
+$enviado = $CONFIG['smtp']['host'] !== ''
+    ? enviarPorSmtp($CONFIG, $asunto, $cuerpoCodificado, $cabeceras)
+    : mail($CONFIG['destino'], $asunto, $cuerpoCodificado, $cabeceras);
+
+if (!$enviado) {
     responder(false, 'No pudimos enviar tu mensaje en este momento. Inténtalo más tarde o escríbenos al correo de atención al ciudadano.', [], 500);
 }
 
